@@ -15,8 +15,13 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@fontsource/geo": "^4.2.3",
+    "bootstrap": "^4.6.0",
     "gatsby": "^3.2.1",
+    "gatsby-plugin-react-svg": "^3.0.1",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.1"
   }
 }

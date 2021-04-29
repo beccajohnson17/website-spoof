@@ -1,11 +1,13 @@
 import * as React from "react"
 import { Link } from "gatsby"
+<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet"></link>
+
 
 // styles
 const pageStyles = {
   color: "#232129",
   padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  fontFamily: 'Geo, sans-serif',
 }
 const headingStyles = {
   marginTop: 0,
@@ -23,6 +25,8 @@ const codeStyles = {
   fontSize: "1.25rem",
   borderRadius: 4,
 }
+
+
 
 // markup
 const NotFoundPage = () => {
