@@ -15,7 +15,10 @@
 exports.ssrComponents = {
   "component---cache-dev-404-page-js": preferDefault(__webpack_require__(/*! ./.cache/dev-404-page.js */ "./.cache/dev-404-page.js")),
   "component---src-pages-404-js": preferDefault(__webpack_require__(/*! ./src/pages/404.js */ "./src/pages/404.js")),
-  "component---src-pages-index-js": preferDefault(__webpack_require__(/*! ./src/pages/index.js */ "./src/pages/index.js"))
+  "component---src-pages-help-js": preferDefault(__webpack_require__(/*! ./src/pages/help.js */ "./src/pages/help.js")),
+  "component---src-pages-index-js": preferDefault(__webpack_require__(/*! ./src/pages/index.js */ "./src/pages/index.js")),
+  "component---src-pages-logout-js": preferDefault(__webpack_require__(/*! ./src/pages/logout.js */ "./src/pages/logout.js")),
+  "component---src-pages-skills-js": preferDefault(__webpack_require__(/*! ./src/pages/skills.js */ "./src/pages/skills.js"))
   }
 
 
@@ -4477,6 +4480,57 @@ function useTimeout() {
 
 /***/ }),
 
+/***/ "./node_modules/@restart/hooks/esm/useUpdateEffect.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@restart/hooks/esm/useUpdateEffect.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/**
+ * Runs an effect only when the dependencies have changed, skipping the
+ * initial "on mount" run. Caution, if the dependency list never changes,
+ * the effect is **never run**
+ *
+ * ```ts
+ *  const ref = useRef<HTMLInput>(null);
+ *
+ *  // focuses an element only if the focus changes, and not on mount
+ *  useUpdateEffect(() => {
+ *    const element = ref.current?.children[focusedIdx] as HTMLElement
+ *
+ *    element?.focus()
+ *
+ *  }, [focusedIndex])
+ * ```
+ * @param effect An effect to run on mount
+ *
+ * @category effects
+ */
+
+function useUpdateEffect(fn, deps) {
+  var isFirst = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(true);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+
+    return fn();
+  }, deps);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useUpdateEffect);
+
+/***/ }),
+
 /***/ "./node_modules/@restart/hooks/esm/useUpdatedRef.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@restart/hooks/esm/useUpdatedRef.js ***!
@@ -4537,6 +4591,2366 @@ function useWillUnmount(fn) {
     };
   }, []);
 }
+
+/***/ }),
+
+/***/ "./node_modules/React/cjs/react.development.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/React/cjs/react.development.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/** @license React v17.0.2
+ * react.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+var _assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
+
+// TODO: this is special because it gets imported during build.
+var ReactVersion = '17.0.2';
+
+// ATTENTION
+// When adding new symbols to this file,
+// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var REACT_ELEMENT_TYPE = 0xeac7;
+var REACT_PORTAL_TYPE = 0xeaca;
+exports.Fragment = 0xeacb;
+exports.StrictMode = 0xeacc;
+exports.Profiler = 0xead2;
+var REACT_PROVIDER_TYPE = 0xeacd;
+var REACT_CONTEXT_TYPE = 0xeace;
+var REACT_FORWARD_REF_TYPE = 0xead0;
+exports.Suspense = 0xead1;
+var REACT_SUSPENSE_LIST_TYPE = 0xead8;
+var REACT_MEMO_TYPE = 0xead3;
+var REACT_LAZY_TYPE = 0xead4;
+var REACT_BLOCK_TYPE = 0xead9;
+var REACT_SERVER_BLOCK_TYPE = 0xeada;
+var REACT_FUNDAMENTAL_TYPE = 0xead5;
+var REACT_SCOPE_TYPE = 0xead7;
+var REACT_OPAQUE_ID_TYPE = 0xeae0;
+var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
+var REACT_OFFSCREEN_TYPE = 0xeae2;
+var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
+
+if (typeof Symbol === 'function' && Symbol.for) {
+  var symbolFor = Symbol.for;
+  REACT_ELEMENT_TYPE = symbolFor('react.element');
+  REACT_PORTAL_TYPE = symbolFor('react.portal');
+  exports.Fragment = symbolFor('react.fragment');
+  exports.StrictMode = symbolFor('react.strict_mode');
+  exports.Profiler = symbolFor('react.profiler');
+  REACT_PROVIDER_TYPE = symbolFor('react.provider');
+  REACT_CONTEXT_TYPE = symbolFor('react.context');
+  REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
+  exports.Suspense = symbolFor('react.suspense');
+  REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
+  REACT_MEMO_TYPE = symbolFor('react.memo');
+  REACT_LAZY_TYPE = symbolFor('react.lazy');
+  REACT_BLOCK_TYPE = symbolFor('react.block');
+  REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
+  REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
+  REACT_SCOPE_TYPE = symbolFor('react.scope');
+  REACT_OPAQUE_ID_TYPE = symbolFor('react.opaque.id');
+  REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
+  REACT_OFFSCREEN_TYPE = symbolFor('react.offscreen');
+  REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
+}
+
+var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+var FAUX_ITERATOR_SYMBOL = '@@iterator';
+function getIteratorFn(maybeIterable) {
+  if (maybeIterable === null || typeof maybeIterable !== 'object') {
+    return null;
+  }
+
+  var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+
+  if (typeof maybeIterator === 'function') {
+    return maybeIterator;
+  }
+
+  return null;
+}
+
+/**
+ * Keeps track of the current dispatcher.
+ */
+var ReactCurrentDispatcher = {
+  /**
+   * @internal
+   * @type {ReactComponent}
+   */
+  current: null
+};
+
+/**
+ * Keeps track of the current batch's configuration such as how long an update
+ * should suspend for if it needs to.
+ */
+var ReactCurrentBatchConfig = {
+  transition: 0
+};
+
+/**
+ * Keeps track of the current owner.
+ *
+ * The current owner is the component who should own any components that are
+ * currently being constructed.
+ */
+var ReactCurrentOwner = {
+  /**
+   * @internal
+   * @type {ReactComponent}
+   */
+  current: null
+};
+
+var ReactDebugCurrentFrame = {};
+var currentExtraStackFrame = null;
+function setExtraStackFrame(stack) {
+  {
+    currentExtraStackFrame = stack;
+  }
+}
+
+{
+  ReactDebugCurrentFrame.setExtraStackFrame = function (stack) {
+    {
+      currentExtraStackFrame = stack;
+    }
+  }; // Stack implementation injected by the current renderer.
+
+
+  ReactDebugCurrentFrame.getCurrentStack = null;
+
+  ReactDebugCurrentFrame.getStackAddendum = function () {
+    var stack = ''; // Add an extra top frame while an element is being validated
+
+    if (currentExtraStackFrame) {
+      stack += currentExtraStackFrame;
+    } // Delegate to the injected renderer-specific implementation
+
+
+    var impl = ReactDebugCurrentFrame.getCurrentStack;
+
+    if (impl) {
+      stack += impl() || '';
+    }
+
+    return stack;
+  };
+}
+
+/**
+ * Used by act() to track whether you're inside an act() scope.
+ */
+var IsSomeRendererActing = {
+  current: false
+};
+
+var ReactSharedInternals = {
+  ReactCurrentDispatcher: ReactCurrentDispatcher,
+  ReactCurrentBatchConfig: ReactCurrentBatchConfig,
+  ReactCurrentOwner: ReactCurrentOwner,
+  IsSomeRendererActing: IsSomeRendererActing,
+  // Used by renderers to avoid bundling object-assign twice in UMD bundles:
+  assign: _assign
+};
+
+{
+  ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
+}
+
+// by calls to these methods by a Babel plugin.
+//
+// In PROD (or in packages without access to React internals),
+// they are left as they are instead.
+
+function warn(format) {
+  {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    printWarning('warn', format, args);
+  }
+}
+function error(format) {
+  {
+    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
+
+    printWarning('error', format, args);
+  }
+}
+
+function printWarning(level, format, args) {
+  // When changing this logic, you might want to also
+  // update consoleWithStackDev.www.js as well.
+  {
+    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    var stack = ReactDebugCurrentFrame.getStackAddendum();
+
+    if (stack !== '') {
+      format += '%s';
+      args = args.concat([stack]);
+    }
+
+    var argsWithFormat = args.map(function (item) {
+      return '' + item;
+    }); // Careful: RN currently depends on this prefix
+
+    argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
+    // breaks IE9: https://github.com/facebook/react/issues/13610
+    // eslint-disable-next-line react-internal/no-production-logging
+
+    Function.prototype.apply.call(console[level], console, argsWithFormat);
+  }
+}
+
+var didWarnStateUpdateForUnmountedComponent = {};
+
+function warnNoop(publicInstance, callerName) {
+  {
+    var _constructor = publicInstance.constructor;
+    var componentName = _constructor && (_constructor.displayName || _constructor.name) || 'ReactClass';
+    var warningKey = componentName + "." + callerName;
+
+    if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
+      return;
+    }
+
+    error("Can't call %s on a component that is not yet mounted. " + 'This is a no-op, but it might indicate a bug in your application. ' + 'Instead, assign to `this.state` directly or define a `state = {};` ' + 'class property with the desired state in the %s component.', callerName, componentName);
+
+    didWarnStateUpdateForUnmountedComponent[warningKey] = true;
+  }
+}
+/**
+ * This is the abstract API for an update queue.
+ */
+
+
+var ReactNoopUpdateQueue = {
+  /**
+   * Checks whether or not this composite component is mounted.
+   * @param {ReactClass} publicInstance The instance we want to test.
+   * @return {boolean} True if mounted, false otherwise.
+   * @protected
+   * @final
+   */
+  isMounted: function (publicInstance) {
+    return false;
+  },
+
+  /**
+   * Forces an update. This should only be invoked when it is known with
+   * certainty that we are **not** in a DOM transaction.
+   *
+   * You may want to call this when you know that some deeper aspect of the
+   * component's state has changed but `setState` was not called.
+   *
+   * This will not invoke `shouldComponentUpdate`, but it will invoke
+   * `componentWillUpdate` and `componentDidUpdate`.
+   *
+   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {?function} callback Called after component is updated.
+   * @param {?string} callerName name of the calling function in the public API.
+   * @internal
+   */
+  enqueueForceUpdate: function (publicInstance, callback, callerName) {
+    warnNoop(publicInstance, 'forceUpdate');
+  },
+
+  /**
+   * Replaces all of the state. Always use this or `setState` to mutate state.
+   * You should treat `this.state` as immutable.
+   *
+   * There is no guarantee that `this.state` will be immediately updated, so
+   * accessing `this.state` after calling this method may return the old value.
+   *
+   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {object} completeState Next state.
+   * @param {?function} callback Called after component is updated.
+   * @param {?string} callerName name of the calling function in the public API.
+   * @internal
+   */
+  enqueueReplaceState: function (publicInstance, completeState, callback, callerName) {
+    warnNoop(publicInstance, 'replaceState');
+  },
+
+  /**
+   * Sets a subset of the state. This only exists because _pendingState is
+   * internal. This provides a merging strategy that is not available to deep
+   * properties which is confusing. TODO: Expose pendingState or don't use it
+   * during the merge.
+   *
+   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {object} partialState Next partial state to be merged with state.
+   * @param {?function} callback Called after component is updated.
+   * @param {?string} Name of the calling function in the public API.
+   * @internal
+   */
+  enqueueSetState: function (publicInstance, partialState, callback, callerName) {
+    warnNoop(publicInstance, 'setState');
+  }
+};
+
+var emptyObject = {};
+
+{
+  Object.freeze(emptyObject);
+}
+/**
+ * Base class helpers for the updating state of a component.
+ */
+
+
+function Component(props, context, updater) {
+  this.props = props;
+  this.context = context; // If a component has string refs, we will assign a different object later.
+
+  this.refs = emptyObject; // We initialize the default updater but the real one gets injected by the
+  // renderer.
+
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+
+Component.prototype.isReactComponent = {};
+/**
+ * Sets a subset of the state. Always use this to mutate
+ * state. You should treat `this.state` as immutable.
+ *
+ * There is no guarantee that `this.state` will be immediately updated, so
+ * accessing `this.state` after calling this method may return the old value.
+ *
+ * There is no guarantee that calls to `setState` will run synchronously,
+ * as they may eventually be batched together.  You can provide an optional
+ * callback that will be executed when the call to setState is actually
+ * completed.
+ *
+ * When a function is provided to setState, it will be called at some point in
+ * the future (not synchronously). It will be called with the up to date
+ * component arguments (state, props, context). These values can be different
+ * from this.* because your function may be called after receiveProps but before
+ * shouldComponentUpdate, and this new state, props, and context will not yet be
+ * assigned to this.
+ *
+ * @param {object|function} partialState Next partial state or function to
+ *        produce next partial state to be merged with current state.
+ * @param {?function} callback Called after state is updated.
+ * @final
+ * @protected
+ */
+
+Component.prototype.setState = function (partialState, callback) {
+  if (!(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null)) {
+    {
+      throw Error( "setState(...): takes an object of state variables to update or a function which returns an object of state variables." );
+    }
+  }
+
+  this.updater.enqueueSetState(this, partialState, callback, 'setState');
+};
+/**
+ * Forces an update. This should only be invoked when it is known with
+ * certainty that we are **not** in a DOM transaction.
+ *
+ * You may want to call this when you know that some deeper aspect of the
+ * component's state has changed but `setState` was not called.
+ *
+ * This will not invoke `shouldComponentUpdate`, but it will invoke
+ * `componentWillUpdate` and `componentDidUpdate`.
+ *
+ * @param {?function} callback Called after update is complete.
+ * @final
+ * @protected
+ */
+
+
+Component.prototype.forceUpdate = function (callback) {
+  this.updater.enqueueForceUpdate(this, callback, 'forceUpdate');
+};
+/**
+ * Deprecated APIs. These APIs used to exist on classic React classes but since
+ * we would like to deprecate them, we're not going to move them over to this
+ * modern base class. Instead, we define a getter that warns if it's accessed.
+ */
+
+
+{
+  var deprecatedAPIs = {
+    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
+    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
+  };
+
+  var defineDeprecationWarning = function (methodName, info) {
+    Object.defineProperty(Component.prototype, methodName, {
+      get: function () {
+        warn('%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]);
+
+        return undefined;
+      }
+    });
+  };
+
+  for (var fnName in deprecatedAPIs) {
+    if (deprecatedAPIs.hasOwnProperty(fnName)) {
+      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
+    }
+  }
+}
+
+function ComponentDummy() {}
+
+ComponentDummy.prototype = Component.prototype;
+/**
+ * Convenience component with default shallow equality check for sCU.
+ */
+
+function PureComponent(props, context, updater) {
+  this.props = props;
+  this.context = context; // If a component has string refs, we will assign a different object later.
+
+  this.refs = emptyObject;
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+
+var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
+pureComponentPrototype.constructor = PureComponent; // Avoid an extra prototype jump for these methods.
+
+_assign(pureComponentPrototype, Component.prototype);
+
+pureComponentPrototype.isPureReactComponent = true;
+
+// an immutable object with a single mutable value
+function createRef() {
+  var refObject = {
+    current: null
+  };
+
+  {
+    Object.seal(refObject);
+  }
+
+  return refObject;
+}
+
+function getWrappedName(outerType, innerType, wrapperName) {
+  var functionName = innerType.displayName || innerType.name || '';
+  return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
+}
+
+function getContextName(type) {
+  return type.displayName || 'Context';
+}
+
+function getComponentName(type) {
+  if (type == null) {
+    // Host root, text node or just invalid type.
+    return null;
+  }
+
+  {
+    if (typeof type.tag === 'number') {
+      error('Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
+    }
+  }
+
+  if (typeof type === 'function') {
+    return type.displayName || type.name || null;
+  }
+
+  if (typeof type === 'string') {
+    return type;
+  }
+
+  switch (type) {
+    case exports.Fragment:
+      return 'Fragment';
+
+    case REACT_PORTAL_TYPE:
+      return 'Portal';
+
+    case exports.Profiler:
+      return 'Profiler';
+
+    case exports.StrictMode:
+      return 'StrictMode';
+
+    case exports.Suspense:
+      return 'Suspense';
+
+    case REACT_SUSPENSE_LIST_TYPE:
+      return 'SuspenseList';
+  }
+
+  if (typeof type === 'object') {
+    switch (type.$$typeof) {
+      case REACT_CONTEXT_TYPE:
+        var context = type;
+        return getContextName(context) + '.Consumer';
+
+      case REACT_PROVIDER_TYPE:
+        var provider = type;
+        return getContextName(provider._context) + '.Provider';
+
+      case REACT_FORWARD_REF_TYPE:
+        return getWrappedName(type, type.render, 'ForwardRef');
+
+      case REACT_MEMO_TYPE:
+        return getComponentName(type.type);
+
+      case REACT_BLOCK_TYPE:
+        return getComponentName(type._render);
+
+      case REACT_LAZY_TYPE:
+        {
+          var lazyComponent = type;
+          var payload = lazyComponent._payload;
+          var init = lazyComponent._init;
+
+          try {
+            return getComponentName(init(payload));
+          } catch (x) {
+            return null;
+          }
+        }
+    }
+  }
+
+  return null;
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var RESERVED_PROPS = {
+  key: true,
+  ref: true,
+  __self: true,
+  __source: true
+};
+var specialPropKeyWarningShown, specialPropRefWarningShown, didWarnAboutStringRefs;
+
+{
+  didWarnAboutStringRefs = {};
+}
+
+function hasValidRef(config) {
+  {
+    if (hasOwnProperty.call(config, 'ref')) {
+      var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
+
+      if (getter && getter.isReactWarning) {
+        return false;
+      }
+    }
+  }
+
+  return config.ref !== undefined;
+}
+
+function hasValidKey(config) {
+  {
+    if (hasOwnProperty.call(config, 'key')) {
+      var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
+
+      if (getter && getter.isReactWarning) {
+        return false;
+      }
+    }
+  }
+
+  return config.key !== undefined;
+}
+
+function defineKeyPropWarningGetter(props, displayName) {
+  var warnAboutAccessingKey = function () {
+    {
+      if (!specialPropKeyWarningShown) {
+        specialPropKeyWarningShown = true;
+
+        error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+      }
+    }
+  };
+
+  warnAboutAccessingKey.isReactWarning = true;
+  Object.defineProperty(props, 'key', {
+    get: warnAboutAccessingKey,
+    configurable: true
+  });
+}
+
+function defineRefPropWarningGetter(props, displayName) {
+  var warnAboutAccessingRef = function () {
+    {
+      if (!specialPropRefWarningShown) {
+        specialPropRefWarningShown = true;
+
+        error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+      }
+    }
+  };
+
+  warnAboutAccessingRef.isReactWarning = true;
+  Object.defineProperty(props, 'ref', {
+    get: warnAboutAccessingRef,
+    configurable: true
+  });
+}
+
+function warnIfStringRefCannotBeAutoConverted(config) {
+  {
+    if (typeof config.ref === 'string' && ReactCurrentOwner.current && config.__self && ReactCurrentOwner.current.stateNode !== config.__self) {
+      var componentName = getComponentName(ReactCurrentOwner.current.type);
+
+      if (!didWarnAboutStringRefs[componentName]) {
+        error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', componentName, config.ref);
+
+        didWarnAboutStringRefs[componentName] = true;
+      }
+    }
+  }
+}
+/**
+ * Factory method to create a new React element. This no longer adheres to
+ * the class pattern, so do not use new to call it. Also, instanceof check
+ * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
+ * if something is a React Element.
+ *
+ * @param {*} type
+ * @param {*} props
+ * @param {*} key
+ * @param {string|object} ref
+ * @param {*} owner
+ * @param {*} self A *temporary* helper to detect places where `this` is
+ * different from the `owner` when React.createElement is called, so that we
+ * can warn. We want to get rid of owner and replace string `ref`s with arrow
+ * functions, and as long as `this` and owner are the same, there will be no
+ * change in behavior.
+ * @param {*} source An annotation object (added by a transpiler or otherwise)
+ * indicating filename, line number, and/or other information.
+ * @internal
+ */
+
+
+var ReactElement = function (type, key, ref, self, source, owner, props) {
+  var element = {
+    // This tag allows us to uniquely identify this as a React Element
+    $$typeof: REACT_ELEMENT_TYPE,
+    // Built-in properties that belong on the element
+    type: type,
+    key: key,
+    ref: ref,
+    props: props,
+    // Record the component responsible for creating this element.
+    _owner: owner
+  };
+
+  {
+    // The validation flag is currently mutative. We put it on
+    // an external backing store so that we can freeze the whole object.
+    // This can be replaced with a WeakMap once they are implemented in
+    // commonly used development environments.
+    element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
+    // the validation flag non-enumerable (where possible, which should
+    // include every environment we run tests in), so the test framework
+    // ignores it.
+
+    Object.defineProperty(element._store, 'validated', {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: false
+    }); // self and source are DEV only properties.
+
+    Object.defineProperty(element, '_self', {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: self
+    }); // Two elements created in two different places should be considered
+    // equal for testing purposes and therefore we hide it from enumeration.
+
+    Object.defineProperty(element, '_source', {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: source
+    });
+
+    if (Object.freeze) {
+      Object.freeze(element.props);
+      Object.freeze(element);
+    }
+  }
+
+  return element;
+};
+/**
+ * Create and return a new ReactElement of the given type.
+ * See https://reactjs.org/docs/react-api.html#createelement
+ */
+
+function createElement(type, config, children) {
+  var propName; // Reserved names are extracted
+
+  var props = {};
+  var key = null;
+  var ref = null;
+  var self = null;
+  var source = null;
+
+  if (config != null) {
+    if (hasValidRef(config)) {
+      ref = config.ref;
+
+      {
+        warnIfStringRefCannotBeAutoConverted(config);
+      }
+    }
+
+    if (hasValidKey(config)) {
+      key = '' + config.key;
+    }
+
+    self = config.__self === undefined ? null : config.__self;
+    source = config.__source === undefined ? null : config.__source; // Remaining properties are added to a new props object
+
+    for (propName in config) {
+      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+        props[propName] = config[propName];
+      }
+    }
+  } // Children can be more than one argument, and those are transferred onto
+  // the newly allocated props object.
+
+
+  var childrenLength = arguments.length - 2;
+
+  if (childrenLength === 1) {
+    props.children = children;
+  } else if (childrenLength > 1) {
+    var childArray = Array(childrenLength);
+
+    for (var i = 0; i < childrenLength; i++) {
+      childArray[i] = arguments[i + 2];
+    }
+
+    {
+      if (Object.freeze) {
+        Object.freeze(childArray);
+      }
+    }
+
+    props.children = childArray;
+  } // Resolve default props
+
+
+  if (type && type.defaultProps) {
+    var defaultProps = type.defaultProps;
+
+    for (propName in defaultProps) {
+      if (props[propName] === undefined) {
+        props[propName] = defaultProps[propName];
+      }
+    }
+  }
+
+  {
+    if (key || ref) {
+      var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
+
+      if (key) {
+        defineKeyPropWarningGetter(props, displayName);
+      }
+
+      if (ref) {
+        defineRefPropWarningGetter(props, displayName);
+      }
+    }
+  }
+
+  return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+}
+function cloneAndReplaceKey(oldElement, newKey) {
+  var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
+  return newElement;
+}
+/**
+ * Clone and return a new ReactElement using element as the starting point.
+ * See https://reactjs.org/docs/react-api.html#cloneelement
+ */
+
+function cloneElement(element, config, children) {
+  if (!!(element === null || element === undefined)) {
+    {
+      throw Error( "React.cloneElement(...): The argument must be a React element, but you passed " + element + "." );
+    }
+  }
+
+  var propName; // Original props are copied
+
+  var props = _assign({}, element.props); // Reserved names are extracted
+
+
+  var key = element.key;
+  var ref = element.ref; // Self is preserved since the owner is preserved.
+
+  var self = element._self; // Source is preserved since cloneElement is unlikely to be targeted by a
+  // transpiler, and the original source is probably a better indicator of the
+  // true owner.
+
+  var source = element._source; // Owner will be preserved, unless ref is overridden
+
+  var owner = element._owner;
+
+  if (config != null) {
+    if (hasValidRef(config)) {
+      // Silently steal the ref from the parent.
+      ref = config.ref;
+      owner = ReactCurrentOwner.current;
+    }
+
+    if (hasValidKey(config)) {
+      key = '' + config.key;
+    } // Remaining properties override existing props
+
+
+    var defaultProps;
+
+    if (element.type && element.type.defaultProps) {
+      defaultProps = element.type.defaultProps;
+    }
+
+    for (propName in config) {
+      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+        if (config[propName] === undefined && defaultProps !== undefined) {
+          // Resolve default props
+          props[propName] = defaultProps[propName];
+        } else {
+          props[propName] = config[propName];
+        }
+      }
+    }
+  } // Children can be more than one argument, and those are transferred onto
+  // the newly allocated props object.
+
+
+  var childrenLength = arguments.length - 2;
+
+  if (childrenLength === 1) {
+    props.children = children;
+  } else if (childrenLength > 1) {
+    var childArray = Array(childrenLength);
+
+    for (var i = 0; i < childrenLength; i++) {
+      childArray[i] = arguments[i + 2];
+    }
+
+    props.children = childArray;
+  }
+
+  return ReactElement(element.type, key, ref, self, source, owner, props);
+}
+/**
+ * Verifies the object is a ReactElement.
+ * See https://reactjs.org/docs/react-api.html#isvalidelement
+ * @param {?object} object
+ * @return {boolean} True if `object` is a ReactElement.
+ * @final
+ */
+
+function isValidElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+
+var SEPARATOR = '.';
+var SUBSEPARATOR = ':';
+/**
+ * Escape and wrap key so it is safe to use as a reactid
+ *
+ * @param {string} key to be escaped.
+ * @return {string} the escaped key.
+ */
+
+function escape(key) {
+  var escapeRegex = /[=:]/g;
+  var escaperLookup = {
+    '=': '=0',
+    ':': '=2'
+  };
+  var escapedString = key.replace(escapeRegex, function (match) {
+    return escaperLookup[match];
+  });
+  return '$' + escapedString;
+}
+/**
+ * TODO: Test that a single child and an array with one item have the same key
+ * pattern.
+ */
+
+
+var didWarnAboutMaps = false;
+var userProvidedKeyEscapeRegex = /\/+/g;
+
+function escapeUserProvidedKey(text) {
+  return text.replace(userProvidedKeyEscapeRegex, '$&/');
+}
+/**
+ * Generate a key string that identifies a element within a set.
+ *
+ * @param {*} element A element that could contain a manual key.
+ * @param {number} index Index that is used if a manual key is not provided.
+ * @return {string}
+ */
+
+
+function getElementKey(element, index) {
+  // Do some typechecking here since we call this blindly. We want to ensure
+  // that we don't block potential future ES APIs.
+  if (typeof element === 'object' && element !== null && element.key != null) {
+    // Explicit key
+    return escape('' + element.key);
+  } // Implicit key determined by the index in the set
+
+
+  return index.toString(36);
+}
+
+function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
+  var type = typeof children;
+
+  if (type === 'undefined' || type === 'boolean') {
+    // All of the above are perceived as null.
+    children = null;
+  }
+
+  var invokeCallback = false;
+
+  if (children === null) {
+    invokeCallback = true;
+  } else {
+    switch (type) {
+      case 'string':
+      case 'number':
+        invokeCallback = true;
+        break;
+
+      case 'object':
+        switch (children.$$typeof) {
+          case REACT_ELEMENT_TYPE:
+          case REACT_PORTAL_TYPE:
+            invokeCallback = true;
+        }
+
+    }
+  }
+
+  if (invokeCallback) {
+    var _child = children;
+    var mappedChild = callback(_child); // If it's the only child, treat the name as if it was wrapped in an array
+    // so that it's consistent if the number of children grows:
+
+    var childKey = nameSoFar === '' ? SEPARATOR + getElementKey(_child, 0) : nameSoFar;
+
+    if (Array.isArray(mappedChild)) {
+      var escapedChildKey = '';
+
+      if (childKey != null) {
+        escapedChildKey = escapeUserProvidedKey(childKey) + '/';
+      }
+
+      mapIntoArray(mappedChild, array, escapedChildKey, '', function (c) {
+        return c;
+      });
+    } else if (mappedChild != null) {
+      if (isValidElement(mappedChild)) {
+        mappedChild = cloneAndReplaceKey(mappedChild, // Keep both the (mapped) and old keys if they differ, just as
+        // traverseAllChildren used to do for objects as children
+        escapedPrefix + ( // $FlowFixMe Flow incorrectly thinks React.Portal doesn't have a key
+        mappedChild.key && (!_child || _child.key !== mappedChild.key) ? // $FlowFixMe Flow incorrectly thinks existing element's key can be a number
+        escapeUserProvidedKey('' + mappedChild.key) + '/' : '') + childKey);
+      }
+
+      array.push(mappedChild);
+    }
+
+    return 1;
+  }
+
+  var child;
+  var nextName;
+  var subtreeCount = 0; // Count of children found in the current subtree.
+
+  var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
+
+  if (Array.isArray(children)) {
+    for (var i = 0; i < children.length; i++) {
+      child = children[i];
+      nextName = nextNamePrefix + getElementKey(child, i);
+      subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
+    }
+  } else {
+    var iteratorFn = getIteratorFn(children);
+
+    if (typeof iteratorFn === 'function') {
+      var iterableChildren = children;
+
+      {
+        // Warn about using Maps as children
+        if (iteratorFn === iterableChildren.entries) {
+          if (!didWarnAboutMaps) {
+            warn('Using Maps as children is not supported. ' + 'Use an array of keyed ReactElements instead.');
+          }
+
+          didWarnAboutMaps = true;
+        }
+      }
+
+      var iterator = iteratorFn.call(iterableChildren);
+      var step;
+      var ii = 0;
+
+      while (!(step = iterator.next()).done) {
+        child = step.value;
+        nextName = nextNamePrefix + getElementKey(child, ii++);
+        subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
+      }
+    } else if (type === 'object') {
+      var childrenString = '' + children;
+
+      {
+        {
+          throw Error( "Objects are not valid as a React child (found: " + (childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString) + "). If you meant to render a collection of children, use an array instead." );
+        }
+      }
+    }
+  }
+
+  return subtreeCount;
+}
+
+/**
+ * Maps children that are typically specified as `props.children`.
+ *
+ * See https://reactjs.org/docs/react-api.html#reactchildrenmap
+ *
+ * The provided mapFunction(child, index) will be called for each
+ * leaf child.
+ *
+ * @param {?*} children Children tree container.
+ * @param {function(*, int)} func The map function.
+ * @param {*} context Context for mapFunction.
+ * @return {object} Object containing the ordered map of results.
+ */
+function mapChildren(children, func, context) {
+  if (children == null) {
+    return children;
+  }
+
+  var result = [];
+  var count = 0;
+  mapIntoArray(children, result, '', '', function (child) {
+    return func.call(context, child, count++);
+  });
+  return result;
+}
+/**
+ * Count the number of children that are typically specified as
+ * `props.children`.
+ *
+ * See https://reactjs.org/docs/react-api.html#reactchildrencount
+ *
+ * @param {?*} children Children tree container.
+ * @return {number} The number of children.
+ */
+
+
+function countChildren(children) {
+  var n = 0;
+  mapChildren(children, function () {
+    n++; // Don't return anything
+  });
+  return n;
+}
+
+/**
+ * Iterates through children that are typically specified as `props.children`.
+ *
+ * See https://reactjs.org/docs/react-api.html#reactchildrenforeach
+ *
+ * The provided forEachFunc(child, index) will be called for each
+ * leaf child.
+ *
+ * @param {?*} children Children tree container.
+ * @param {function(*, int)} forEachFunc
+ * @param {*} forEachContext Context for forEachContext.
+ */
+function forEachChildren(children, forEachFunc, forEachContext) {
+  mapChildren(children, function () {
+    forEachFunc.apply(this, arguments); // Don't return anything.
+  }, forEachContext);
+}
+/**
+ * Flatten a children object (typically specified as `props.children`) and
+ * return an array with appropriately re-keyed children.
+ *
+ * See https://reactjs.org/docs/react-api.html#reactchildrentoarray
+ */
+
+
+function toArray(children) {
+  return mapChildren(children, function (child) {
+    return child;
+  }) || [];
+}
+/**
+ * Returns the first child in a collection of children and verifies that there
+ * is only one child in the collection.
+ *
+ * See https://reactjs.org/docs/react-api.html#reactchildrenonly
+ *
+ * The current implementation of this function assumes that a single child gets
+ * passed without a wrapper, but the purpose of this helper function is to
+ * abstract away the particular structure of children.
+ *
+ * @param {?object} children Child collection structure.
+ * @return {ReactElement} The first and only `ReactElement` contained in the
+ * structure.
+ */
+
+
+function onlyChild(children) {
+  if (!isValidElement(children)) {
+    {
+      throw Error( "React.Children.only expected to receive a single React element child." );
+    }
+  }
+
+  return children;
+}
+
+function createContext(defaultValue, calculateChangedBits) {
+  if (calculateChangedBits === undefined) {
+    calculateChangedBits = null;
+  } else {
+    {
+      if (calculateChangedBits !== null && typeof calculateChangedBits !== 'function') {
+        error('createContext: Expected the optional second argument to be a ' + 'function. Instead received: %s', calculateChangedBits);
+      }
+    }
+  }
+
+  var context = {
+    $$typeof: REACT_CONTEXT_TYPE,
+    _calculateChangedBits: calculateChangedBits,
+    // As a workaround to support multiple concurrent renderers, we categorize
+    // some renderers as primary and others as secondary. We only expect
+    // there to be two concurrent renderers at most: React Native (primary) and
+    // Fabric (secondary); React DOM (primary) and React ART (secondary).
+    // Secondary renderers store their context values on separate fields.
+    _currentValue: defaultValue,
+    _currentValue2: defaultValue,
+    // Used to track how many concurrent renderers this context currently
+    // supports within in a single renderer. Such as parallel server rendering.
+    _threadCount: 0,
+    // These are circular
+    Provider: null,
+    Consumer: null
+  };
+  context.Provider = {
+    $$typeof: REACT_PROVIDER_TYPE,
+    _context: context
+  };
+  var hasWarnedAboutUsingNestedContextConsumers = false;
+  var hasWarnedAboutUsingConsumerProvider = false;
+  var hasWarnedAboutDisplayNameOnConsumer = false;
+
+  {
+    // A separate object, but proxies back to the original context object for
+    // backwards compatibility. It has a different $$typeof, so we can properly
+    // warn for the incorrect usage of Context as a Consumer.
+    var Consumer = {
+      $$typeof: REACT_CONTEXT_TYPE,
+      _context: context,
+      _calculateChangedBits: context._calculateChangedBits
+    }; // $FlowFixMe: Flow complains about not setting a value, which is intentional here
+
+    Object.defineProperties(Consumer, {
+      Provider: {
+        get: function () {
+          if (!hasWarnedAboutUsingConsumerProvider) {
+            hasWarnedAboutUsingConsumerProvider = true;
+
+            error('Rendering <Context.Consumer.Provider> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Provider> instead?');
+          }
+
+          return context.Provider;
+        },
+        set: function (_Provider) {
+          context.Provider = _Provider;
+        }
+      },
+      _currentValue: {
+        get: function () {
+          return context._currentValue;
+        },
+        set: function (_currentValue) {
+          context._currentValue = _currentValue;
+        }
+      },
+      _currentValue2: {
+        get: function () {
+          return context._currentValue2;
+        },
+        set: function (_currentValue2) {
+          context._currentValue2 = _currentValue2;
+        }
+      },
+      _threadCount: {
+        get: function () {
+          return context._threadCount;
+        },
+        set: function (_threadCount) {
+          context._threadCount = _threadCount;
+        }
+      },
+      Consumer: {
+        get: function () {
+          if (!hasWarnedAboutUsingNestedContextConsumers) {
+            hasWarnedAboutUsingNestedContextConsumers = true;
+
+            error('Rendering <Context.Consumer.Consumer> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Consumer> instead?');
+          }
+
+          return context.Consumer;
+        }
+      },
+      displayName: {
+        get: function () {
+          return context.displayName;
+        },
+        set: function (displayName) {
+          if (!hasWarnedAboutDisplayNameOnConsumer) {
+            warn('Setting `displayName` on Context.Consumer has no effect. ' + "You should set it directly on the context with Context.displayName = '%s'.", displayName);
+
+            hasWarnedAboutDisplayNameOnConsumer = true;
+          }
+        }
+      }
+    }); // $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
+
+    context.Consumer = Consumer;
+  }
+
+  {
+    context._currentRenderer = null;
+    context._currentRenderer2 = null;
+  }
+
+  return context;
+}
+
+var Uninitialized = -1;
+var Pending = 0;
+var Resolved = 1;
+var Rejected = 2;
+
+function lazyInitializer(payload) {
+  if (payload._status === Uninitialized) {
+    var ctor = payload._result;
+    var thenable = ctor(); // Transition to the next state.
+
+    var pending = payload;
+    pending._status = Pending;
+    pending._result = thenable;
+    thenable.then(function (moduleObject) {
+      if (payload._status === Pending) {
+        var defaultExport = moduleObject.default;
+
+        {
+          if (defaultExport === undefined) {
+            error('lazy: Expected the result of a dynamic import() call. ' + 'Instead received: %s\n\nYour code should look like: \n  ' + // Break up imports to avoid accidentally parsing them as dependencies.
+            'const MyComponent = lazy(() => imp' + "ort('./MyComponent'))", moduleObject);
+          }
+        } // Transition to the next state.
+
+
+        var resolved = payload;
+        resolved._status = Resolved;
+        resolved._result = defaultExport;
+      }
+    }, function (error) {
+      if (payload._status === Pending) {
+        // Transition to the next state.
+        var rejected = payload;
+        rejected._status = Rejected;
+        rejected._result = error;
+      }
+    });
+  }
+
+  if (payload._status === Resolved) {
+    return payload._result;
+  } else {
+    throw payload._result;
+  }
+}
+
+function lazy(ctor) {
+  var payload = {
+    // We use these fields to store the result.
+    _status: -1,
+    _result: ctor
+  };
+  var lazyType = {
+    $$typeof: REACT_LAZY_TYPE,
+    _payload: payload,
+    _init: lazyInitializer
+  };
+
+  {
+    // In production, this would just set it on the object.
+    var defaultProps;
+    var propTypes; // $FlowFixMe
+
+    Object.defineProperties(lazyType, {
+      defaultProps: {
+        configurable: true,
+        get: function () {
+          return defaultProps;
+        },
+        set: function (newDefaultProps) {
+          error('React.lazy(...): It is not supported to assign `defaultProps` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
+
+          defaultProps = newDefaultProps; // Match production behavior more closely:
+          // $FlowFixMe
+
+          Object.defineProperty(lazyType, 'defaultProps', {
+            enumerable: true
+          });
+        }
+      },
+      propTypes: {
+        configurable: true,
+        get: function () {
+          return propTypes;
+        },
+        set: function (newPropTypes) {
+          error('React.lazy(...): It is not supported to assign `propTypes` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
+
+          propTypes = newPropTypes; // Match production behavior more closely:
+          // $FlowFixMe
+
+          Object.defineProperty(lazyType, 'propTypes', {
+            enumerable: true
+          });
+        }
+      }
+    });
+  }
+
+  return lazyType;
+}
+
+function forwardRef(render) {
+  {
+    if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
+      error('forwardRef requires a render function but received a `memo` ' + 'component. Instead of forwardRef(memo(...)), use ' + 'memo(forwardRef(...)).');
+    } else if (typeof render !== 'function') {
+      error('forwardRef requires a render function but was given %s.', render === null ? 'null' : typeof render);
+    } else {
+      if (render.length !== 0 && render.length !== 2) {
+        error('forwardRef render functions accept exactly two parameters: props and ref. %s', render.length === 1 ? 'Did you forget to use the ref parameter?' : 'Any additional parameter will be undefined.');
+      }
+    }
+
+    if (render != null) {
+      if (render.defaultProps != null || render.propTypes != null) {
+        error('forwardRef render functions do not support propTypes or defaultProps. ' + 'Did you accidentally pass a React component?');
+      }
+    }
+  }
+
+  var elementType = {
+    $$typeof: REACT_FORWARD_REF_TYPE,
+    render: render
+  };
+
+  {
+    var ownName;
+    Object.defineProperty(elementType, 'displayName', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+        return ownName;
+      },
+      set: function (name) {
+        ownName = name;
+
+        if (render.displayName == null) {
+          render.displayName = name;
+        }
+      }
+    });
+  }
+
+  return elementType;
+}
+
+// Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+
+var enableScopeAPI = false; // Experimental Create Event Handle API.
+
+function isValidElementType(type) {
+  if (typeof type === 'string' || typeof type === 'function') {
+    return true;
+  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+
+
+  if (type === exports.Fragment || type === exports.Profiler || type === REACT_DEBUG_TRACING_MODE_TYPE || type === exports.StrictMode || type === exports.Suspense || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
+    return true;
+  }
+
+  if (typeof type === 'object' && type !== null) {
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function memo(type, compare) {
+  {
+    if (!isValidElementType(type)) {
+      error('memo: The first argument must be a component. Instead ' + 'received: %s', type === null ? 'null' : typeof type);
+    }
+  }
+
+  var elementType = {
+    $$typeof: REACT_MEMO_TYPE,
+    type: type,
+    compare: compare === undefined ? null : compare
+  };
+
+  {
+    var ownName;
+    Object.defineProperty(elementType, 'displayName', {
+      enumerable: false,
+      configurable: true,
+      get: function () {
+        return ownName;
+      },
+      set: function (name) {
+        ownName = name;
+
+        if (type.displayName == null) {
+          type.displayName = name;
+        }
+      }
+    });
+  }
+
+  return elementType;
+}
+
+function resolveDispatcher() {
+  var dispatcher = ReactCurrentDispatcher.current;
+
+  if (!(dispatcher !== null)) {
+    {
+      throw Error( "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem." );
+    }
+  }
+
+  return dispatcher;
+}
+
+function useContext(Context, unstable_observedBits) {
+  var dispatcher = resolveDispatcher();
+
+  {
+    if (unstable_observedBits !== undefined) {
+      error('useContext() second argument is reserved for future ' + 'use in React. Passing it is not supported. ' + 'You passed: %s.%s', unstable_observedBits, typeof unstable_observedBits === 'number' && Array.isArray(arguments[2]) ? '\n\nDid you call array.map(useContext)? ' + 'Calling Hooks inside a loop is not supported. ' + 'Learn more at https://reactjs.org/link/rules-of-hooks' : '');
+    } // TODO: add a more generic warning for invalid values.
+
+
+    if (Context._context !== undefined) {
+      var realContext = Context._context; // Don't deduplicate because this legitimately causes bugs
+      // and nobody should be using this in existing code.
+
+      if (realContext.Consumer === Context) {
+        error('Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be ' + 'removed in a future major release. Did you mean to call useContext(Context) instead?');
+      } else if (realContext.Provider === Context) {
+        error('Calling useContext(Context.Provider) is not supported. ' + 'Did you mean to call useContext(Context) instead?');
+      }
+    }
+  }
+
+  return dispatcher.useContext(Context, unstable_observedBits);
+}
+function useState(initialState) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useState(initialState);
+}
+function useReducer(reducer, initialArg, init) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useReducer(reducer, initialArg, init);
+}
+function useRef(initialValue) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useRef(initialValue);
+}
+function useEffect(create, deps) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useEffect(create, deps);
+}
+function useLayoutEffect(create, deps) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useLayoutEffect(create, deps);
+}
+function useCallback(callback, deps) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useCallback(callback, deps);
+}
+function useMemo(create, deps) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useMemo(create, deps);
+}
+function useImperativeHandle(ref, create, deps) {
+  var dispatcher = resolveDispatcher();
+  return dispatcher.useImperativeHandle(ref, create, deps);
+}
+function useDebugValue(value, formatterFn) {
+  {
+    var dispatcher = resolveDispatcher();
+    return dispatcher.useDebugValue(value, formatterFn);
+  }
+}
+
+// Helpers to patch console.logs to avoid logging during side-effect free
+// replaying on render function. This currently only patches the object
+// lazily which won't cover if the log function was extracted eagerly.
+// We could also eagerly patch the method.
+var disabledDepth = 0;
+var prevLog;
+var prevInfo;
+var prevWarn;
+var prevError;
+var prevGroup;
+var prevGroupCollapsed;
+var prevGroupEnd;
+
+function disabledLog() {}
+
+disabledLog.__reactDisabledLog = true;
+function disableLogs() {
+  {
+    if (disabledDepth === 0) {
+      /* eslint-disable react-internal/no-production-logging */
+      prevLog = console.log;
+      prevInfo = console.info;
+      prevWarn = console.warn;
+      prevError = console.error;
+      prevGroup = console.group;
+      prevGroupCollapsed = console.groupCollapsed;
+      prevGroupEnd = console.groupEnd; // https://github.com/facebook/react/issues/19099
+
+      var props = {
+        configurable: true,
+        enumerable: true,
+        value: disabledLog,
+        writable: true
+      }; // $FlowFixMe Flow thinks console is immutable.
+
+      Object.defineProperties(console, {
+        info: props,
+        log: props,
+        warn: props,
+        error: props,
+        group: props,
+        groupCollapsed: props,
+        groupEnd: props
+      });
+      /* eslint-enable react-internal/no-production-logging */
+    }
+
+    disabledDepth++;
+  }
+}
+function reenableLogs() {
+  {
+    disabledDepth--;
+
+    if (disabledDepth === 0) {
+      /* eslint-disable react-internal/no-production-logging */
+      var props = {
+        configurable: true,
+        enumerable: true,
+        writable: true
+      }; // $FlowFixMe Flow thinks console is immutable.
+
+      Object.defineProperties(console, {
+        log: _assign({}, props, {
+          value: prevLog
+        }),
+        info: _assign({}, props, {
+          value: prevInfo
+        }),
+        warn: _assign({}, props, {
+          value: prevWarn
+        }),
+        error: _assign({}, props, {
+          value: prevError
+        }),
+        group: _assign({}, props, {
+          value: prevGroup
+        }),
+        groupCollapsed: _assign({}, props, {
+          value: prevGroupCollapsed
+        }),
+        groupEnd: _assign({}, props, {
+          value: prevGroupEnd
+        })
+      });
+      /* eslint-enable react-internal/no-production-logging */
+    }
+
+    if (disabledDepth < 0) {
+      error('disabledDepth fell below zero. ' + 'This is a bug in React. Please file an issue.');
+    }
+  }
+}
+
+var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
+var prefix;
+function describeBuiltInComponentFrame(name, source, ownerFn) {
+  {
+    if (prefix === undefined) {
+      // Extract the VM specific prefix used by each line.
+      try {
+        throw Error();
+      } catch (x) {
+        var match = x.stack.trim().match(/\n( *(at )?)/);
+        prefix = match && match[1] || '';
+      }
+    } // We use the prefix to ensure our stacks line up with native stack frames.
+
+
+    return '\n' + prefix + name;
+  }
+}
+var reentry = false;
+var componentFrameCache;
+
+{
+  var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+  componentFrameCache = new PossiblyWeakMap();
+}
+
+function describeNativeComponentFrame(fn, construct) {
+  // If something asked for a stack inside a fake render, it should get ignored.
+  if (!fn || reentry) {
+    return '';
+  }
+
+  {
+    var frame = componentFrameCache.get(fn);
+
+    if (frame !== undefined) {
+      return frame;
+    }
+  }
+
+  var control;
+  reentry = true;
+  var previousPrepareStackTrace = Error.prepareStackTrace; // $FlowFixMe It does accept undefined.
+
+  Error.prepareStackTrace = undefined;
+  var previousDispatcher;
+
+  {
+    previousDispatcher = ReactCurrentDispatcher$1.current; // Set the dispatcher in DEV because this might be call in the render function
+    // for warnings.
+
+    ReactCurrentDispatcher$1.current = null;
+    disableLogs();
+  }
+
+  try {
+    // This should throw.
+    if (construct) {
+      // Something should be setting the props in the constructor.
+      var Fake = function () {
+        throw Error();
+      }; // $FlowFixMe
+
+
+      Object.defineProperty(Fake.prototype, 'props', {
+        set: function () {
+          // We use a throwing setter instead of frozen or non-writable props
+          // because that won't throw in a non-strict mode function.
+          throw Error();
+        }
+      });
+
+      if (typeof Reflect === 'object' && Reflect.construct) {
+        // We construct a different control for this case to include any extra
+        // frames added by the construct call.
+        try {
+          Reflect.construct(Fake, []);
+        } catch (x) {
+          control = x;
+        }
+
+        Reflect.construct(fn, [], Fake);
+      } else {
+        try {
+          Fake.call();
+        } catch (x) {
+          control = x;
+        }
+
+        fn.call(Fake.prototype);
+      }
+    } else {
+      try {
+        throw Error();
+      } catch (x) {
+        control = x;
+      }
+
+      fn();
+    }
+  } catch (sample) {
+    // This is inlined manually because closure doesn't do it for us.
+    if (sample && control && typeof sample.stack === 'string') {
+      // This extracts the first frame from the sample that isn't also in the control.
+      // Skipping one frame that we assume is the frame that calls the two.
+      var sampleLines = sample.stack.split('\n');
+      var controlLines = control.stack.split('\n');
+      var s = sampleLines.length - 1;
+      var c = controlLines.length - 1;
+
+      while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+        // We expect at least one stack frame to be shared.
+        // Typically this will be the root most one. However, stack frames may be
+        // cut off due to maximum stack limits. In this case, one maybe cut off
+        // earlier than the other. We assume that the sample is longer or the same
+        // and there for cut off earlier. So we should find the root most frame in
+        // the sample somewhere in the control.
+        c--;
+      }
+
+      for (; s >= 1 && c >= 0; s--, c--) {
+        // Next we find the first one that isn't the same which should be the
+        // frame that called our sample function and the control.
+        if (sampleLines[s] !== controlLines[c]) {
+          // In V8, the first line is describing the message but other VMs don't.
+          // If we're about to return the first line, and the control is also on the same
+          // line, that's a pretty good indicator that our sample threw at same line as
+          // the control. I.e. before we entered the sample frame. So we ignore this result.
+          // This can happen if you passed a class to function component, or non-function.
+          if (s !== 1 || c !== 1) {
+            do {
+              s--;
+              c--; // We may still have similar intermediate frames from the construct call.
+              // The next one that isn't the same should be our match though.
+
+              if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                // V8 adds a "new" prefix for native classes. Let's remove it to make it prettier.
+                var _frame = '\n' + sampleLines[s].replace(' at new ', ' at ');
+
+                {
+                  if (typeof fn === 'function') {
+                    componentFrameCache.set(fn, _frame);
+                  }
+                } // Return the line we found.
+
+
+                return _frame;
+              }
+            } while (s >= 1 && c >= 0);
+          }
+
+          break;
+        }
+      }
+    }
+  } finally {
+    reentry = false;
+
+    {
+      ReactCurrentDispatcher$1.current = previousDispatcher;
+      reenableLogs();
+    }
+
+    Error.prepareStackTrace = previousPrepareStackTrace;
+  } // Fallback to just using the name if we couldn't make it throw.
+
+
+  var name = fn ? fn.displayName || fn.name : '';
+  var syntheticFrame = name ? describeBuiltInComponentFrame(name) : '';
+
+  {
+    if (typeof fn === 'function') {
+      componentFrameCache.set(fn, syntheticFrame);
+    }
+  }
+
+  return syntheticFrame;
+}
+function describeFunctionComponentFrame(fn, source, ownerFn) {
+  {
+    return describeNativeComponentFrame(fn, false);
+  }
+}
+
+function shouldConstruct(Component) {
+  var prototype = Component.prototype;
+  return !!(prototype && prototype.isReactComponent);
+}
+
+function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+
+  if (type == null) {
+    return '';
+  }
+
+  if (typeof type === 'function') {
+    {
+      return describeNativeComponentFrame(type, shouldConstruct(type));
+    }
+  }
+
+  if (typeof type === 'string') {
+    return describeBuiltInComponentFrame(type);
+  }
+
+  switch (type) {
+    case exports.Suspense:
+      return describeBuiltInComponentFrame('Suspense');
+
+    case REACT_SUSPENSE_LIST_TYPE:
+      return describeBuiltInComponentFrame('SuspenseList');
+  }
+
+  if (typeof type === 'object') {
+    switch (type.$$typeof) {
+      case REACT_FORWARD_REF_TYPE:
+        return describeFunctionComponentFrame(type.render);
+
+      case REACT_MEMO_TYPE:
+        // Memo may contain any component type so we recursively resolve it.
+        return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+
+      case REACT_BLOCK_TYPE:
+        return describeFunctionComponentFrame(type._render);
+
+      case REACT_LAZY_TYPE:
+        {
+          var lazyComponent = type;
+          var payload = lazyComponent._payload;
+          var init = lazyComponent._init;
+
+          try {
+            // Lazy may contain any component type so we recursively resolve it.
+            return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+          } catch (x) {}
+        }
+    }
+  }
+
+  return '';
+}
+
+var loggedTypeFailures = {};
+var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+
+function setCurrentlyValidatingElement(element) {
+  {
+    if (element) {
+      var owner = element._owner;
+      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+    } else {
+      ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+    }
+  }
+}
+
+function checkPropTypes(typeSpecs, values, location, componentName, element) {
+  {
+    // $FlowFixMe This is okay but Flow doesn't know it.
+    var has = Function.call.bind(Object.prototype.hasOwnProperty);
+
+    for (var typeSpecName in typeSpecs) {
+      if (has(typeSpecs, typeSpecName)) {
+        var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+
+          error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
+        } catch (ex) {
+          error$1 = ex;
+        }
+
+        if (error$1 && !(error$1 instanceof Error)) {
+          setCurrentlyValidatingElement(element);
+
+          error('%s: type specification of %s' + ' `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error$1);
+
+          setCurrentlyValidatingElement(null);
+        }
+
+        if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error$1.message] = true;
+          setCurrentlyValidatingElement(element);
+
+          error('Failed %s type: %s', location, error$1.message);
+
+          setCurrentlyValidatingElement(null);
+        }
+      }
+    }
+  }
+}
+
+function setCurrentlyValidatingElement$1(element) {
+  {
+    if (element) {
+      var owner = element._owner;
+      var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+      setExtraStackFrame(stack);
+    } else {
+      setExtraStackFrame(null);
+    }
+  }
+}
+
+var propTypesMisspellWarningShown;
+
+{
+  propTypesMisspellWarningShown = false;
+}
+
+function getDeclarationErrorAddendum() {
+  if (ReactCurrentOwner.current) {
+    var name = getComponentName(ReactCurrentOwner.current.type);
+
+    if (name) {
+      return '\n\nCheck the render method of `' + name + '`.';
+    }
+  }
+
+  return '';
+}
+
+function getSourceInfoErrorAddendum(source) {
+  if (source !== undefined) {
+    var fileName = source.fileName.replace(/^.*[\\\/]/, '');
+    var lineNumber = source.lineNumber;
+    return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
+  }
+
+  return '';
+}
+
+function getSourceInfoErrorAddendumForProps(elementProps) {
+  if (elementProps !== null && elementProps !== undefined) {
+    return getSourceInfoErrorAddendum(elementProps.__source);
+  }
+
+  return '';
+}
+/**
+ * Warn if there's no key explicitly set on dynamic arrays of children or
+ * object keys are not valid. This allows us to keep track of children between
+ * updates.
+ */
+
+
+var ownerHasKeyUseWarning = {};
+
+function getCurrentComponentErrorInfo(parentType) {
+  var info = getDeclarationErrorAddendum();
+
+  if (!info) {
+    var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
+
+    if (parentName) {
+      info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+    }
+  }
+
+  return info;
+}
+/**
+ * Warn if the element doesn't have an explicit key assigned to it.
+ * This element is in an array. The array could grow and shrink or be
+ * reordered. All children that haven't already been validated are required to
+ * have a "key" property assigned to it. Error statuses are cached so a warning
+ * will only be shown once.
+ *
+ * @internal
+ * @param {ReactElement} element Element that requires a key.
+ * @param {*} parentType element's parent's type.
+ */
+
+
+function validateExplicitKey(element, parentType) {
+  if (!element._store || element._store.validated || element.key != null) {
+    return;
+  }
+
+  element._store.validated = true;
+  var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
+
+  if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
+    return;
+  }
+
+  ownerHasKeyUseWarning[currentComponentErrorInfo] = true; // Usually the current owner is the offender, but if it accepts children as a
+  // property, it may be the creator of the child that's responsible for
+  // assigning it a key.
+
+  var childOwner = '';
+
+  if (element && element._owner && element._owner !== ReactCurrentOwner.current) {
+    // Give the component that originally created this child.
+    childOwner = " It was passed a child from " + getComponentName(element._owner.type) + ".";
+  }
+
+  {
+    setCurrentlyValidatingElement$1(element);
+
+    error('Each child in a list should have a unique "key" prop.' + '%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+
+    setCurrentlyValidatingElement$1(null);
+  }
+}
+/**
+ * Ensure that every element either is passed in a static location, in an
+ * array with an explicit keys property defined, or in an object literal
+ * with valid key property.
+ *
+ * @internal
+ * @param {ReactNode} node Statically passed child of any type.
+ * @param {*} parentType node's parent's type.
+ */
+
+
+function validateChildKeys(node, parentType) {
+  if (typeof node !== 'object') {
+    return;
+  }
+
+  if (Array.isArray(node)) {
+    for (var i = 0; i < node.length; i++) {
+      var child = node[i];
+
+      if (isValidElement(child)) {
+        validateExplicitKey(child, parentType);
+      }
+    }
+  } else if (isValidElement(node)) {
+    // This element was passed in a valid location.
+    if (node._store) {
+      node._store.validated = true;
+    }
+  } else if (node) {
+    var iteratorFn = getIteratorFn(node);
+
+    if (typeof iteratorFn === 'function') {
+      // Entry iterators used to provide implicit keys,
+      // but now we print a separate warning for them later.
+      if (iteratorFn !== node.entries) {
+        var iterator = iteratorFn.call(node);
+        var step;
+
+        while (!(step = iterator.next()).done) {
+          if (isValidElement(step.value)) {
+            validateExplicitKey(step.value, parentType);
+          }
+        }
+      }
+    }
+  }
+}
+/**
+ * Given an element, validate that its props follow the propTypes definition,
+ * provided by the type.
+ *
+ * @param {ReactElement} element
+ */
+
+
+function validatePropTypes(element) {
+  {
+    var type = element.type;
+
+    if (type === null || type === undefined || typeof type === 'string') {
+      return;
+    }
+
+    var propTypes;
+
+    if (typeof type === 'function') {
+      propTypes = type.propTypes;
+    } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+    // Inner props are checked in the reconciler.
+    type.$$typeof === REACT_MEMO_TYPE)) {
+      propTypes = type.propTypes;
+    } else {
+      return;
+    }
+
+    if (propTypes) {
+      // Intentionally inside to avoid triggering lazy initializers:
+      var name = getComponentName(type);
+      checkPropTypes(propTypes, element.props, 'prop', name, element);
+    } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
+      propTypesMisspellWarningShown = true; // Intentionally inside to avoid triggering lazy initializers:
+
+      var _name = getComponentName(type);
+
+      error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', _name || 'Unknown');
+    }
+
+    if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
+      error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.');
+    }
+  }
+}
+/**
+ * Given a fragment, validate that it can only be provided with fragment props
+ * @param {ReactElement} fragment
+ */
+
+
+function validateFragmentProps(fragment) {
+  {
+    var keys = Object.keys(fragment.props);
+
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+
+      if (key !== 'children' && key !== 'key') {
+        setCurrentlyValidatingElement$1(fragment);
+
+        error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
+
+        setCurrentlyValidatingElement$1(null);
+        break;
+      }
+    }
+
+    if (fragment.ref !== null) {
+      setCurrentlyValidatingElement$1(fragment);
+
+      error('Invalid attribute `ref` supplied to `React.Fragment`.');
+
+      setCurrentlyValidatingElement$1(null);
+    }
+  }
+}
+function createElementWithValidation(type, props, children) {
+  var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
+  // succeed and there will likely be errors in render.
+
+  if (!validType) {
+    var info = '';
+
+    if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
+      info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
+    }
+
+    var sourceInfo = getSourceInfoErrorAddendumForProps(props);
+
+    if (sourceInfo) {
+      info += sourceInfo;
+    } else {
+      info += getDeclarationErrorAddendum();
+    }
+
+    var typeString;
+
+    if (type === null) {
+      typeString = 'null';
+    } else if (Array.isArray(type)) {
+      typeString = 'array';
+    } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
+      typeString = "<" + (getComponentName(type.type) || 'Unknown') + " />";
+      info = ' Did you accidentally export a JSX literal instead of a component?';
+    } else {
+      typeString = typeof type;
+    }
+
+    {
+      error('React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
+    }
+  }
+
+  var element = createElement.apply(this, arguments); // The result can be nullish if a mock or a custom function is used.
+  // TODO: Drop this when these are no longer allowed as the type argument.
+
+  if (element == null) {
+    return element;
+  } // Skip key warning if the type isn't valid since our key validation logic
+  // doesn't expect a non-string/function type and can throw confusing errors.
+  // We don't want exception behavior to differ between dev and prod.
+  // (Rendering will throw with a helpful message and as soon as the type is
+  // fixed, the key warnings will appear.)
+
+
+  if (validType) {
+    for (var i = 2; i < arguments.length; i++) {
+      validateChildKeys(arguments[i], type);
+    }
+  }
+
+  if (type === exports.Fragment) {
+    validateFragmentProps(element);
+  } else {
+    validatePropTypes(element);
+  }
+
+  return element;
+}
+var didWarnAboutDeprecatedCreateFactory = false;
+function createFactoryWithValidation(type) {
+  var validatedFactory = createElementWithValidation.bind(null, type);
+  validatedFactory.type = type;
+
+  {
+    if (!didWarnAboutDeprecatedCreateFactory) {
+      didWarnAboutDeprecatedCreateFactory = true;
+
+      warn('React.createFactory() is deprecated and will be removed in ' + 'a future major release. Consider using JSX ' + 'or use React.createElement() directly instead.');
+    } // Legacy hook: remove it
+
+
+    Object.defineProperty(validatedFactory, 'type', {
+      enumerable: false,
+      get: function () {
+        warn('Factory.type is deprecated. Access the class directly ' + 'before passing it to createFactory.');
+
+        Object.defineProperty(this, 'type', {
+          value: type
+        });
+        return type;
+      }
+    });
+  }
+
+  return validatedFactory;
+}
+function cloneElementWithValidation(element, props, children) {
+  var newElement = cloneElement.apply(this, arguments);
+
+  for (var i = 2; i < arguments.length; i++) {
+    validateChildKeys(arguments[i], newElement.type);
+  }
+
+  validatePropTypes(newElement);
+  return newElement;
+}
+
+{
+
+  try {
+    var frozenObject = Object.freeze({});
+    /* eslint-disable no-new */
+
+    new Map([[frozenObject, null]]);
+    new Set([frozenObject]);
+    /* eslint-enable no-new */
+  } catch (e) {
+  }
+}
+
+var createElement$1 =  createElementWithValidation ;
+var cloneElement$1 =  cloneElementWithValidation ;
+var createFactory =  createFactoryWithValidation ;
+var Children = {
+  map: mapChildren,
+  forEach: forEachChildren,
+  count: countChildren,
+  toArray: toArray,
+  only: onlyChild
+};
+
+exports.Children = Children;
+exports.Component = Component;
+exports.PureComponent = PureComponent;
+exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
+exports.cloneElement = cloneElement$1;
+exports.createContext = createContext;
+exports.createElement = createElement$1;
+exports.createFactory = createFactory;
+exports.createRef = createRef;
+exports.forwardRef = forwardRef;
+exports.isValidElement = isValidElement;
+exports.lazy = lazy;
+exports.memo = memo;
+exports.useCallback = useCallback;
+exports.useContext = useContext;
+exports.useDebugValue = useDebugValue;
+exports.useEffect = useEffect;
+exports.useImperativeHandle = useImperativeHandle;
+exports.useLayoutEffect = useLayoutEffect;
+exports.useMemo = useMemo;
+exports.useReducer = useReducer;
+exports.useRef = useRef;
+exports.useState = useState;
+exports.version = ReactVersion;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/React/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/React/index.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "./node_modules/React/cjs/react.development.js");
+}
+
 
 /***/ }),
 
@@ -4709,6 +7123,72 @@ module.exports = function (encodedURI) {
 	}
 };
 
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/esm/activeElement.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/activeElement.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ activeElement)
+/* harmony export */ });
+/* harmony import */ var _ownerDocument__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ownerDocument */ "./node_modules/dom-helpers/esm/ownerDocument.js");
+
+/**
+ * Returns the actively focused element safely.
+ *
+ * @param doc the document to check
+ */
+
+function activeElement(doc) {
+  if (doc === void 0) {
+    doc = (0,_ownerDocument__WEBPACK_IMPORTED_MODULE_0__.default)();
+  }
+
+  // Support: IE 9 only
+  // IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
+  try {
+    var active = doc.activeElement; // IE11 returns a seemingly empty object in some cases when accessing
+    // document.activeElement from an <iframe>
+
+    if (!active || !active.nodeName) return null;
+    return active;
+  } catch (e) {
+    /* ie throws if no active element */
+    return doc.body;
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/esm/addClass.js":
+/*!**************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/addClass.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ addClass)
+/* harmony export */ });
+/* harmony import */ var _hasClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hasClass */ "./node_modules/dom-helpers/esm/hasClass.js");
+
+/**
+ * Adds a CSS class to a given element.
+ * 
+ * @param element the element
+ * @param className the CSS class name
+ */
+
+function addClass(element, className) {
+  if (element.classList) element.classList.add(className);else if (!(0,_hasClass__WEBPACK_IMPORTED_MODULE_0__.default)(element, className)) if (typeof element.className === 'string') element.className = element.className + " " + className;else element.setAttribute('class', (element.className && element.className.baseVal || '') + " " + className);
+}
 
 /***/ }),
 
@@ -4990,6 +7470,23 @@ function hyphenateStyleName(string) {
 
 /***/ }),
 
+/***/ "./node_modules/dom-helpers/esm/isDocument.js":
+/*!****************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/isDocument.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isDocument)
+/* harmony export */ });
+function isDocument(element) {
+  return 'nodeType' in element && element.nodeType === document.DOCUMENT_NODE;
+}
+
+/***/ }),
+
 /***/ "./node_modules/dom-helpers/esm/isTransform.js":
 /*!*****************************************************!*\
   !*** ./node_modules/dom-helpers/esm/isTransform.js ***!
@@ -5004,6 +7501,27 @@ __webpack_require__.r(__webpack_exports__);
 var supportedTransforms = /^((translate|rotate|scale)(X|Y|Z|3d)?|matrix(3d)?|perspective|skew(X|Y)?)$/i;
 function isTransform(value) {
   return !!(value && supportedTransforms.test(value));
+}
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/esm/isWindow.js":
+/*!**************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/isWindow.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isWindow)
+/* harmony export */ });
+/* harmony import */ var _isDocument__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isDocument */ "./node_modules/dom-helpers/esm/isDocument.js");
+
+function isWindow(node) {
+  if ('window' in node && node.window === node) return node;
+  if ((0,_isDocument__WEBPACK_IMPORTED_MODULE_0__.default)(node)) return node.defaultView || false;
+  return false;
 }
 
 /***/ }),
@@ -5142,6 +7660,40 @@ function qsa(element, selector) {
 
 /***/ }),
 
+/***/ "./node_modules/dom-helpers/esm/removeClass.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/removeClass.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ removeClass)
+/* harmony export */ });
+function replaceClassName(origClass, classToRemove) {
+  return origClass.replace(new RegExp("(^|\\s)" + classToRemove + "(?:\\s|$)", 'g'), '$1').replace(/\s+/g, ' ').replace(/^\s*|\s*$/g, '');
+}
+/**
+ * Removes a CSS class from a given element.
+ * 
+ * @param element the element
+ * @param className the CSS class name
+ */
+
+
+function removeClass(element, className) {
+  if (element.classList) {
+    element.classList.remove(className);
+  } else if (typeof element.className === 'string') {
+    element.className = replaceClassName(element.className, className);
+  } else {
+    element.setAttribute('class', replaceClassName(element.className && element.className.baseVal || '', className));
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/dom-helpers/esm/removeEventListener.js":
 /*!*************************************************************!*\
   !*** ./node_modules/dom-helpers/esm/removeEventListener.js ***!
@@ -5171,6 +7723,40 @@ function removeEventListener(node, eventName, handler, options) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (removeEventListener);
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/esm/scrollbarSize.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/dom-helpers/esm/scrollbarSize.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ scrollbarSize)
+/* harmony export */ });
+/* harmony import */ var _canUseDOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./canUseDOM */ "./node_modules/dom-helpers/esm/canUseDOM.js");
+
+var size;
+function scrollbarSize(recalc) {
+  if (!size && size !== 0 || recalc) {
+    if (_canUseDOM__WEBPACK_IMPORTED_MODULE_0__.default) {
+      var scrollDiv = document.createElement('div');
+      scrollDiv.style.position = 'absolute';
+      scrollDiv.style.top = '-9999px';
+      scrollDiv.style.width = '50px';
+      scrollDiv.style.height = '50px';
+      scrollDiv.style.overflow = 'scroll';
+      document.body.appendChild(scrollDiv);
+      size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+      document.body.removeChild(scrollDiv);
+    }
+  }
+
+  return size;
+}
 
 /***/ }),
 
@@ -7531,6 +10117,199 @@ function Layout({
 
 /***/ }),
 
+/***/ "./src/components/linkedoutnav.js":
+/*!****************************************!*\
+  !*** ./src/components/linkedoutnav.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/NavDropdown.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/layout */ "./src/components/layout.js");
+/* harmony import */ var _images_logo_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../images/logo.png */ "./src/images/logo.png");
+/* harmony import */ var _public_static_resumespoof_pdf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../public/static/resumespoof.pdf */ "./public/static/resumespoof.pdf");
+/* harmony import */ var _images_sophia_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../images/sophia.jpg */ "./src/images/sophia.jpg");
+/* harmony import */ var _images_svg_search_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../images/svg/search.svg */ "./src/images/svg/search.svg");
+/* harmony import */ var _images_svg_search_svg__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_images_svg_search_svg__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
+
+
+
+
+
+
+
+const SearchbarDropdown = props => {
+  const {
+    options,
+    onInputChange
+  } = props;
+  const ulRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    inputRef.current.addEventListener('click', event => {
+      event.stopPropagation();
+      ulRef.current.style.display = 'flex';
+      onInputChange(event);
+    });
+    document.addEventListener('click', event => {
+      ulRef.current.style.display = 'none';
+    });
+  }, []);
+  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "search-bar-dropdown"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    class: "container d-flex justify-content-flex-start"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "search-bar",
+    type: "text",
+    className: "form-control",
+    placeholder: "Search",
+    ref: inputRef,
+    onChange: onInputChange
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+    className: "btn btn-dark",
+    type: "submit"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_search_svg__WEBPACK_IMPORTED_MODULE_7___default()), {
+    className: "search-icon"
+  }))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    id: "results",
+    className: "list-group",
+    ref: ulRef
+  }, options.map((option, index) => {
+    return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      type: "button",
+      key: index,
+      onClick: e => {
+        inputRef.current.value = option;
+      },
+      className: "list-group-item list-group-item-action"
+    }, option);
+  })));
+};
+
+const defaultOptions = [' Highpaying jobs in the area', 'Jobs somewhat outside the area', 'Jobs in my skill set', 'Entry level jobs', 'Internship', 'Unpaid internship', 'Volunteer position', 'What the ffffffffffffffff', 'Top side hustles', 'Ways to spend my time', 'Alternatives to being homeless'];
+
+const LinkedOutNavbar = () => {
+  const {
+    0: options,
+    1: setOptions
+  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+
+  const onInputChange = event => {
+    setOptions(defaultOptions.filter(option => option.includes(event.target.value)));
+  };
+
+  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
+    bg: "light",
+    expand: "lg"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__.default.Toggle, {
+    "aria-controls": "basic-navbar-nav"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__.default.Collapse, {
+    id: "basic-navbar-nav"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
+    className: "mr-auto"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_layout__WEBPACK_IMPORTED_MODULE_3__.default, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
+    title: /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "pull-left"
+    }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      className: "thumbnail-image rounded-circle",
+      src: _images_sophia_jpg__WEBPACK_IMPORTED_MODULE_6__.default,
+      alt: "user pic"
+    }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Me"),
+    id: "basic-nav-dropdown"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default.Item, {
+    href: "/"
+  }, "Feed"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default.Item, {
+    href: "/skills"
+  }, "Skills"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default.Item, {
+    href: _public_static_resumespoof_pdf__WEBPACK_IMPORTED_MODULE_5__.default,
+    target: "_blank"
+  }, "Resume"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default.Item, {
+    href: "/help"
+  }, "Help"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default.Divider, null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default.Item, {
+    href: "/logout"
+  }, "Logout")))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "App container mt-2 mb-3"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(SearchbarDropdown, {
+    options: options,
+    onInputChange: onInputChange
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__.default.Brand, {
+    href: "/"
+  }, "LinkedOut ", /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "logo-linked",
+    src: _images_logo_png__WEBPACK_IMPORTED_MODULE_4__.default,
+    alt: "user pic"
+  }))))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LinkedOutNavbar);
+
+/***/ }),
+
+/***/ "./src/components/modal.js":
+/*!*********************************!*\
+  !*** ./src/components/modal.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+function ModalOpen() {
+  const {
+    0: show,
+    1: setShow
+  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+
+  const handleClose = () => setShow(false);
+
+  const handleShow = () => setShow(true);
+
+  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(React__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__.default, {
+    variant: "primary",
+    onClick: handleShow
+  }, "Click me to learn something neat!"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
+    size: "sm",
+    show: show,
+    onHide: handleClose
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Header, {
+    closeButton: true
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Title, null, "Fun Fact")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Body, null, "These are all actual skills that you can endorse someone for on LinkedIn!", /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Credit to Corey Wainwright for his hilarious article, which you can find ", /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://blog.hubspot.com/marketing/linkedin-skills-endorsements",
+    target: "_blank"
+  }, "here."))));
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalOpen);
+
+/***/ }),
+
 /***/ "./src/pages/404.js":
 /*!**************************!*\
   !*** ./src/pages/404.js ***!
@@ -7596,6 +10375,77 @@ const NotFoundPage = () => {
 
 /***/ }),
 
+/***/ "./src/pages/help.js":
+/*!***************************!*\
+  !*** ./src/pages/help.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Help)
+/* harmony export */ });
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Carousel.js");
+/* harmony import */ var _images_inspquote1_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/inspquote1.png */ "./src/images/inspquote1.png");
+/* harmony import */ var _images_inspquote2_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/inspquote2.png */ "./src/images/inspquote2.png");
+/* harmony import */ var _images_inspquote3_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/inspquote3.png */ "./src/images/inspquote3.png");
+/* harmony import */ var _images_inspquote4_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../images/inspquote4.png */ "./src/images/inspquote4.png");
+/* harmony import */ var _images_inspquote5_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../images/inspquote5.png */ "./src/images/inspquote5.png");
+/* harmony import */ var _images_inspquote6_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../images/inspquote6.png */ "./src/images/inspquote6.png");
+/* harmony import */ var _images_inspquote7_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../images/inspquote7.png */ "./src/images/inspquote7.png");
+/* harmony import */ var _images_inspquote8_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../images/inspquote8.png */ "./src/images/inspquote8.png");
+/* harmony import */ var _components_linkedoutnav__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/linkedoutnav */ "./src/components/linkedoutnav.js");
+
+
+
+
+
+
+
+
+
+
+
+function Help() {
+  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_linkedoutnav__WEBPACK_IMPORTED_MODULE_9__.default, null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote1_png__WEBPACK_IMPORTED_MODULE_1__.default,
+    alt: "First slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "This will help with your job search!"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Right?"))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote2_png__WEBPACK_IMPORTED_MODULE_2__.default,
+    alt: "Second slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "~Post~ ~interview~ ~thoughts~"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Keep on failing!"))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote3_png__WEBPACK_IMPORTED_MODULE_3__.default,
+    alt: "Third slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "You've got to have faith like potatoes."), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Trust. Trust Jobs."))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote4_png__WEBPACK_IMPORTED_MODULE_4__.default,
+    alt: "Fourth slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Too true."), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Toooo true."))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote5_png__WEBPACK_IMPORTED_MODULE_5__.default,
+    alt: "Fifth slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "No need to worry about job security!"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Money is evil. Avoid money and live life without it."))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote6_png__WEBPACK_IMPORTED_MODULE_6__.default,
+    alt: "Sixth slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Words of wisdom for the talentless."), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Pour everything into the job."))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote7_png__WEBPACK_IMPORTED_MODULE_7__.default,
+    alt: "Seventh slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Do you hear that?"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "I think this one speaks for itself."))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Item, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "d-block w-100",
+    src: _images_inspquote8_png__WEBPACK_IMPORTED_MODULE_8__.default,
+    alt: "Eighth slide"
+  }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__.default.Caption, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Breaks?"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " Pfft, who is she?")))));
+}
+
+/***/ }),
+
 /***/ "./src/pages/index.js":
 /*!****************************!*\
   !*** ./src/pages/index.js ***!
@@ -7609,20 +10459,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/NavDropdown.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/OverlayTrigger.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Tooltip.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/OverlayTrigger.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Tooltip.js");
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _fontsource_geo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fontsource/geo */ "./node_modules/@fontsource/geo/index.css");
 /* harmony import */ var _fontsource_geo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fontsource_geo__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _images_sophia_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/sophia.jpg */ "./src/images/sophia.jpg");
+/* harmony import */ var _components_linkedoutnav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/linkedoutnav */ "./src/components/linkedoutnav.js");
 /* harmony import */ var _images_person1_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../images/person1.jpg */ "./src/images/person1.jpg");
 /* harmony import */ var _images_person2_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../images/person2.jpg */ "./src/images/person2.jpg");
 /* harmony import */ var _images_person3_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../images/person3.jpg */ "./src/images/person3.jpg");
@@ -7640,22 +10487,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_person21_jpg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../images/person21.jpg */ "./src/images/person21.jpg");
 /* harmony import */ var _images_person24_jpg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../images/person24.jpg */ "./src/images/person24.jpg");
 /* harmony import */ var _images_acme_jpg__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../images/acme.jpg */ "./src/images/acme.jpg");
-/* harmony import */ var _images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../images/svg/thumbsdown.svg */ "./src/images/svg/thumbsdown.svg");
-/* harmony import */ var _images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../images/svg/handshake.svg */ "./src/images/svg/handshake.svg");
-/* harmony import */ var _images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22__);
-/* harmony import */ var _images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../images/svg/comment.svg */ "./src/images/svg/comment.svg");
-/* harmony import */ var _images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23__);
-/* harmony import */ var _components_layout__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../components/layout */ "./src/components/layout.js");
-/* harmony import */ var _images_logo_png__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../images/logo.png */ "./src/images/logo.png");
-/* harmony import */ var _public_static_resumespoof_pdf__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../public/static/resumespoof.pdf */ "./public/static/resumespoof.pdf");
-
+/* harmony import */ var _images_piechart_jpg__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../images/piechart.jpg */ "./src/images/piechart.jpg");
+/* harmony import */ var _images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../images/svg/thumbsdown.svg */ "./src/images/svg/thumbsdown.svg");
+/* harmony import */ var _images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../images/svg/handshake.svg */ "./src/images/svg/handshake.svg");
+/* harmony import */ var _images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../images/svg/comment.svg */ "./src/images/svg/comment.svg");
+/* harmony import */ var _images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24__);
 
 
 
  // Defaults to weight 400.
-
-
 
 
 
@@ -7684,110 +10526,18 @@ const pageStyles = {
   fontFamily: "Geo, sans-serif"
 };
 
-const SearchbarDropdown = props => {
-  const {
-    options,
-    onInputChange
-  } = props;
-  const ulRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    inputRef.current.addEventListener('click', event => {
-      event.stopPropagation();
-      ulRef.current.style.display = 'flex';
-      onInputChange(event);
-    });
-    document.addEventListener('click', event => {
-      ulRef.current.style.display = 'none';
-    });
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-bar-dropdown"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    id: "search-bar",
-    type: "text",
-    className: "form-control",
-    placeholder: "Search",
-    ref: inputRef,
-    onChange: onInputChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-    id: "results",
-    className: "list-group",
-    ref: ulRef
-  }, options.map((option, index) => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      type: "button",
-      key: index,
-      onClick: e => {
-        inputRef.current.value = option;
-      },
-      className: "list-group-item list-group-item-action"
-    }, option);
-  })));
-};
-
-const defaultOptions = [' Highpaying jobs in the area', 'Jobs somewhat outside the area', 'Jobs in my skill set', 'Entry level jobs', 'Internship', 'Unpaid internship', 'Volunteer position', 'What the ffffffffffffffff', 'Top side hustles', 'Ways to spend my time', 'Alternatives to being homeless'];
-
 const IndexPage = () => {
-  const {
-    0: options,
-    1: setOptions
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-
-  const onInputChange = event => {
-    setOptions(defaultOptions.filter(option => option.includes(event.target.value)));
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: pageStyles
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", null, "Linked Out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__.default, {
-    bg: "light",
-    expand: "lg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__.default.Toggle, {
-    "aria-controls": "basic-navbar-nav"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__.default.Collapse, {
-    id: "basic-navbar-nav"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
-    className: "mr-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_layout__WEBPACK_IMPORTED_MODULE_24__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
-    title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "pull-left"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      className: "thumbnail-image rounded-circle",
-      src: _images_sophia_jpg__WEBPACK_IMPORTED_MODULE_3__.default,
-      alt: "user pic"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Me"),
-    id: "basic-nav-dropdown"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default.Item, {
-    href: "#action/3.1"
-  }, "Skills"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default.Item, {
-    href: _public_static_resumespoof_pdf__WEBPACK_IMPORTED_MODULE_26__.default,
-    target: "_blank"
-  }, "Resume"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default.Item, {
-    href: "#action/3.3"
-  }, "Help"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default.Divider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default.Item, {
-    href: "#action/3.4"
-  }, "Logout")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "App container mt-2 mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SearchbarDropdown, {
-    options: options,
-    onInputChange: onInputChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__.default.Brand, {
-    href: "#home"
-  }, "LinkedOut ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "logo-linked",
-    src: _images_logo_png__WEBPACK_IMPORTED_MODULE_25__.default,
-    alt: "user pic"
-  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_31__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_32__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", null, "LinkedOut"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_linkedoutnav__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_25__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_26__.default, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__.default, {
     xs: "6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "stickyPost sticky-top"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+    className: "sideContent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '30rem'
+      minWidth: '30rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
   }, "News"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "body-content"
@@ -7803,280 +10553,572 @@ const IndexPage = () => {
     className: "news-subtext text-muted"
   }, " 3 hrs ago: 2,114 readers ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Beat the back-to-work blues", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "news-subtext text-muted"
-  }, " 8 hrs ago: 9,999 readers "))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, " 8 hrs ago: 9,999 readers "))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '30rem'
+      minWidth: '30rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "Connections"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  }, "Connections"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Mom's old boss")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections-left rounded-circle",
     src: _images_person1_jpg__WEBPACK_IMPORTED_MODULE_4__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Unhelpful guidance counselor")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person2_jpg__WEBPACK_IMPORTED_MODULE_5__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Weirdly flirty classmate")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person3_jpg__WEBPACK_IMPORTED_MODULE_6__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Former roommate")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person4_jpg__WEBPACK_IMPORTED_MODULE_7__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Coworker\u2019s coworker")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person5_jpg__WEBPACK_IMPORTED_MODULE_8__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Camp counselor\u2019s grad school classmate")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections-left rounded-circle",
     src: _images_person6_jpg__WEBPACK_IMPORTED_MODULE_9__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Neighbor you mowed the lawn for")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person7_jpg__WEBPACK_IMPORTED_MODULE_10__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Ex-friend from middle school")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person8_jpg__WEBPACK_IMPORTED_MODULE_11__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Professor who always pronounced your name wrong")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person9_jpg__WEBPACK_IMPORTED_MODULE_12__.default,
     alt: "user pic"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_34__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
     key: "person2",
     placement: 'bottom',
-    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_35__.default, {
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
       id: "person1"
     }, "Frenemy")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person10_jpg__WEBPACK_IMPORTED_MODULE_13__.default,
     alt: "user pic"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "stickyPost sticky-top"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '30rem'
+      minWidth: '30rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
   }, "Trending hashtags"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "hashtag-content"
-  }, "#thenewoffice", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "#postcovidcalculations", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "#happiness", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "#selfcare", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "#selfcareforproductivity", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "#bravenewworld"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_32__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/humblebrag/",
+    target: "_blank"
+  }, "#humblebrag"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/thegrind/",
+    target: "_blank"
+  }, "#thegrind"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/happiness/",
+    target: "_blank"
+  }, "#happiness"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/selfcare/",
+    target: "_blank"
+  }, "#selfcare"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/selfcareforproductivity/",
+    target: "_blank"
+  }, "#selfcareforproductivity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/bravenewworld/",
+    target: "_blank"
+  }, "#bravenewworld"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "https://www.linkedin.com/feed/hashtag/lightattheendofthetunnel/",
+    target: "_blank"
+  }, "#lightattheendofthetunnel")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_27__.default, {
     xs: "6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person11_jpg__WEBPACK_IMPORTED_MODULE_14__.default,
     alt: "user pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "Charlie Bowman"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "Charlie Bowman"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "I am pleased to announce that I have settled for a job at ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("em", null, "MadeUpPlace"), " inc! The pay is not very good, but the snacks in the break room will be able to supplement my grocery budget. Plus, I am very overdue for certain blood tests, so any health insurance will do. I\u2019m excited to start contributing to the team while I determine whether they are total assholes! Here\u2019s to hoping I didn\u2019t make a huge mistake that I need to wiggle out of in about a year."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_acme_jpg__WEBPACK_IMPORTED_MODULE_20__.default,
     alt: "company pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "ACME"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "ACME"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "Looking for a position that is theoretically close to where you live but actually a horrible commute? Want to put in all your waking hours to a job that doesn\u2019t care whether you live or die, so long as you show up at work? Ready to pursue your dreams of putting in minimum effort while you watch office politics play out?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("em", null, "ACME "), " co. has job openings for minimum wage! Let us pay you as little as possible while you reap the benefits of putting all your time into a job you don\u2019t really care about. Here at  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("em", null, "ACME "), " co., we are committed to a people-first workplace, which means that we will technically let you take a mental health day but will realistically peer pressure you out of it. Come sell your life to the machine! Comment below with your resume, cover letter, and 5 references. Minimum 10 years experience required. Job description TBD!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person14_jpg__WEBPACK_IMPORTED_MODULE_15__.default,
     alt: "prof pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "Frank Marwari"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "Frank Marwari"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "Today I had the honor of welcoming a new strategist to the team. We have admired his work for as long as we\u2019ve known it, which is about a week because we have never heard of him before. Thankfully we found a warm body after our last strategist quit due to the workload. Let\u2019s only hope that he doesn\u2019t have any medical or stress conditions that would make him go the same way. Please welcome Charlie Bowman to the team for at least a year, or about as long as we can get him to work here."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person24_jpg__WEBPACK_IMPORTED_MODULE_19__.default,
     alt: "prof pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "Nisha Lu"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "Nisha Lu"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "My wonderful coworker who I only sort of care about, Kiera Murillo, has announced her maternity leave... What a special time in her life, while she doesn\u2019t sleep for about three months and we do not hire anyone to take her place. Everyone else on the team will just have to step up and overwork themselves, because hiring a temp might reduce profit margins. But, at least there will be one less person to gossip about in the office\u2026 So excited for none of us to relax for the next few months\u2026"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person19_jpg__WEBPACK_IMPORTED_MODULE_16__.default,
     alt: "prof pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "George Lindgren"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "George Lindgren"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "Every no is just an opportunity for a future yes \u263A\uFE0F! Got another rejection email, to add to the radio silence from the 15 other jobs I applied to, and I\u2019m so happy about it. I just know that the grind will pay off one day. Hopefully that day comes before my savings run out and I get evicted, but if not I\u2019ll only have myself to blame for not grinding hard enough. Love and light!!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person20_jpg__WEBPACK_IMPORTED_MODULE_17__.default,
     alt: "prof pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "Ryley E. Fowler"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "Ryley E. Fowler"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "Just got \u201Casked to leave\u201D for taking my sick days!? I guess the department is downsizing anyway, haha. This will be a good opportunity for me to lounge around the house in a less structured way than I have been doing while \u201Cworking\u201D. I needed to binge more Netflix anyway, haha. Tell me how to break the news to my husband, maybe I\u2019ll buy us a new subscription service with my severance money? Or some more pain medicine for my constant pain, haha. At least I have as many days as I \u201Cwant\u201D to be sick."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
-    src: _images_acme_jpg__WEBPACK_IMPORTED_MODULE_20__.default,
+    src: _images_piechart_jpg__WEBPACK_IMPORTED_MODULE_21__.default,
     alt: "company pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "ACME"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "WORKPLACE SEMINARS"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "Is your productivity down? A deadly global pandemic can be a bummer, but don\u2019t let it get to you! Starting now, our online course, Self Care for Work Productivity, will go on a 5% sale! Learn how to fuel your body and mind correctly so that you can go to work each morning just as jazzed as ever. Join the ranks of thousands of satisfied employers whose employees attended our course. Work-life balance is so important to your quality of work. Be grateful for the stab at life that your job gives you! Subscribe today."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default, {
-    className: "sideContent",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default, {
     style: {
-      width: '49rem'
+      minWidth: '49rem'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "connections rounded-circle",
     src: _images_person21_jpg__WEBPACK_IMPORTED_MODULE_18__.default,
     alt: "prof pic"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Title, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Title, {
     className: "card-title"
-  }, "Tamara Baumgartner"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_33__.default.Text, {
+  }, "Tamara Baumgartner"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_28__.default.Text, {
     className: "post-content"
   }, "So excited to announce my acceptance into the graduate program at University of Nebraska! I\u2019ll be graduating whenever the economy recovers, as long as the government keeps giving me loans. Who wants to graduate in this job market, am I right? Time to surround myself with extremely high levels of personal stress so that I don\u2019t have to focus on any future stress. This way, I can attend classes, teach them, research, and lose hair. Best of both worlds. Excited to be a Husker!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "icons-flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_21___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_22___default()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)))))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "dislike",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "dislike"
+    }, "Expressing discontentment? No. Not allowed.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_thumbsdown_svg__WEBPACK_IMPORTED_MODULE_22___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "handshake",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "handshake"
+    }, "NO UNIONIZING")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_handshake_svg__WEBPACK_IMPORTED_MODULE_23___default()), null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_29__.default, {
+    key: "comment",
+    placement: 'bottom',
+    overlay: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_30__.default, {
+      id: "comment"
+    }, "Trust me, we're helping you out here by not letting you do this.")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((_images_svg_comment_svg__WEBPACK_IMPORTED_MODULE_24___default()), null))))))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndexPage);
+
+/***/ }),
+
+/***/ "./src/pages/logout.js":
+/*!*****************************!*\
+  !*** ./src/pages/logout.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Logout)
+/* harmony export */ });
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var _images_dontforget2_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/dontforget2.png */ "./src/images/dontforget2.png");
+
+
+function Logout() {
+  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "make-chungus",
+    src: _images_dontforget2_png__WEBPACK_IMPORTED_MODULE_1__.default,
+    alt: "user pic"
+  }));
+}
+
+/***/ }),
+
+/***/ "./src/pages/skills.js":
+/*!*****************************!*\
+  !*** ./src/pages/skills.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Logout)
+/* harmony export */ });
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Card.js");
+/* harmony import */ var _components_linkedoutnav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/linkedoutnav */ "./src/components/linkedoutnav.js");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/modal */ "./src/components/modal.js");
+
+
+
+
+function Logout() {
+  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_linkedoutnav__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skills-container"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_modal__WEBPACK_IMPORTED_MODULE_2__.default, null)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
+    className: "skill-card",
+    style: {
+      minWidth: '49rem'
+    }
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Body, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Title, {
+    className: "skill-title"
+  }, "Skills and endorsements"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Counting "), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Rebekah Johnson and 70 connections"), " have given endorsements for this skill"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Spring Cleaning "), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "George Jones and 42 connections"), " have given endorsements for this skill"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Fire Eating "), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Gerald FireEater and 19 connections"), " have given endorsements for this skill"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Punching "), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Andrew Sagerian and 1 connection"), " have given endorsements for this skill"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Small Talk "), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "No one"), " endorses this skill. Ever."), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "  Javelin ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "  Eating ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "  Snacks ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Chewing Gum ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Halloween ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "  Memes ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "   Drinking Water ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "  Moving Up ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Chilled Water ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, "  Flexible Approach to Work ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Tween ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Smoothies ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Showers ")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Text, {
+    className: "skill-content"
+  }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "skill-header"
+  }, " Breathing ")))));
+}
 
 /***/ }),
 
@@ -16604,6 +19646,104 @@ AbstractNavItem.defaultProps = defaultProps;
 
 /***/ }),
 
+/***/ "./node_modules/react-bootstrap/esm/BootstrapModalManager.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/BootstrapModalManager.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BootstrapModalManager)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dom-helpers/css */ "./node_modules/dom-helpers/esm/css.js");
+/* harmony import */ var dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dom-helpers/querySelectorAll */ "./node_modules/dom-helpers/esm/querySelectorAll.js");
+/* harmony import */ var dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers/scrollbarSize */ "./node_modules/dom-helpers/esm/scrollbarSize.js");
+/* harmony import */ var react_overlays_ModalManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-overlays/ModalManager */ "./node_modules/react-overlays/esm/ModalManager.js");
+
+
+
+
+
+var Selector = {
+  FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
+  STICKY_CONTENT: '.sticky-top',
+  NAVBAR_TOGGLER: '.navbar-toggler'
+};
+
+var BootstrapModalManager = /*#__PURE__*/function (_ModalManager) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__.default)(BootstrapModalManager, _ModalManager);
+
+  function BootstrapModalManager() {
+    return _ModalManager.apply(this, arguments) || this;
+  }
+
+  var _proto = BootstrapModalManager.prototype;
+
+  _proto.adjustAndStore = function adjustAndStore(prop, element, adjust) {
+    var _css;
+
+    var actual = element.style[prop]; // TODO: DOMStringMap and CSSStyleDeclaration aren't strictly compatible
+    // @ts-ignore
+
+    element.dataset[prop] = actual;
+    (0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__.default)(element, (_css = {}, _css[prop] = parseFloat((0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__.default)(element, prop)) + adjust + "px", _css));
+  };
+
+  _proto.restore = function restore(prop, element) {
+    var value = element.dataset[prop];
+
+    if (value !== undefined) {
+      var _css2;
+
+      delete element.dataset[prop];
+      (0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_1__.default)(element, (_css2 = {}, _css2[prop] = value, _css2));
+    }
+  };
+
+  _proto.setContainerStyle = function setContainerStyle(containerState, container) {
+    var _this = this;
+
+    _ModalManager.prototype.setContainerStyle.call(this, containerState, container);
+
+    if (!containerState.overflowing) return;
+    var size = (0,dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_3__.default)();
+    (0,dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__.default)(container, Selector.FIXED_CONTENT).forEach(function (el) {
+      return _this.adjustAndStore('paddingRight', el, size);
+    });
+    (0,dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__.default)(container, Selector.STICKY_CONTENT).forEach(function (el) {
+      return _this.adjustAndStore('marginRight', el, -size);
+    });
+    (0,dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__.default)(container, Selector.NAVBAR_TOGGLER).forEach(function (el) {
+      return _this.adjustAndStore('marginRight', el, size);
+    });
+  };
+
+  _proto.removeContainerStyle = function removeContainerStyle(containerState, container) {
+    var _this2 = this;
+
+    _ModalManager.prototype.removeContainerStyle.call(this, containerState, container);
+
+    (0,dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__.default)(container, Selector.FIXED_CONTENT).forEach(function (el) {
+      return _this2.restore('paddingRight', el);
+    });
+    (0,dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__.default)(container, Selector.STICKY_CONTENT).forEach(function (el) {
+      return _this2.restore('marginRight', el);
+    });
+    (0,dom_helpers_querySelectorAll__WEBPACK_IMPORTED_MODULE_2__.default)(container, Selector.NAVBAR_TOGGLER).forEach(function (el) {
+      return _this2.restore('marginRight', el);
+    });
+  };
+
+  return BootstrapModalManager;
+}(react_overlays_ModalManager__WEBPACK_IMPORTED_MODULE_4__.default);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/react-bootstrap/esm/Button.js":
 /*!****************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/Button.js ***!
@@ -16837,6 +19977,648 @@ function (_ref, ref) {
 CardImg.displayName = 'CardImg';
 CardImg.defaultProps = defaultProps;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CardImg);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/Carousel.js":
+/*!******************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/Carousel.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
+/* harmony import */ var _restart_hooks_useUpdateEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @restart/hooks/useUpdateEffect */ "./node_modules/@restart/hooks/esm/useUpdateEffect.js");
+/* harmony import */ var _restart_hooks_useCommittedRef__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @restart/hooks/useCommittedRef */ "./node_modules/@restart/hooks/esm/useCommittedRef.js");
+/* harmony import */ var _restart_hooks_useTimeout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @restart/hooks/useTimeout */ "./node_modules/@restart/hooks/esm/useTimeout.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-transition-group/Transition */ "./node_modules/react-transition-group/esm/Transition.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var uncontrollable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! uncontrollable */ "./node_modules/uncontrollable/lib/esm/index.js");
+/* harmony import */ var _CarouselCaption__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./CarouselCaption */ "./node_modules/react-bootstrap/esm/CarouselCaption.js");
+/* harmony import */ var _CarouselItem__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./CarouselItem */ "./node_modules/react-bootstrap/esm/CarouselItem.js");
+/* harmony import */ var _ElementChildren__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ElementChildren */ "./node_modules/react-bootstrap/esm/ElementChildren.js");
+/* harmony import */ var _SafeAnchor__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./SafeAnchor */ "./node_modules/react-bootstrap/esm/SafeAnchor.js");
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+/* harmony import */ var _transitionEndListener__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./transitionEndListener */ "./node_modules/react-bootstrap/esm/transitionEndListener.js");
+/* harmony import */ var _triggerBrowserReflow__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./triggerBrowserReflow */ "./node_modules/react-bootstrap/esm/triggerBrowserReflow.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var SWIPE_THRESHOLD = 40;
+var propTypes = {
+  /**
+   * @default 'carousel'
+   */
+  bsPrefix: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
+  as: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().elementType),
+
+  /**
+   * Enables animation on the Carousel as it transitions between slides.
+   */
+  slide: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /** Animates slides with a crossfade animation instead of the default slide animation */
+  fade: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * Show the Carousel previous and next arrows for changing the current slide
+   */
+  controls: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * Show a set of slide position indicators
+   */
+  indicators: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * Controls the current visible slide
+   *
+   * @controllable onSelect
+   */
+  activeIndex: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().number),
+
+  /**
+   * Callback fired when the active item changes.
+   *
+   * ```js
+   * (eventKey: number, event: Object | null) => void
+   * ```
+   *
+   * @controllable activeIndex
+   */
+  onSelect: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+
+  /**
+   * Callback fired when a slide transition starts.
+   *
+   * ```js
+   * (eventKey: number, direction: 'left' | 'right') => void
+   */
+  onSlide: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+
+  /**
+   * Callback fired when a slide transition ends.
+   *
+   * ```js
+   * (eventKey: number, direction: 'left' | 'right') => void
+   */
+  onSlid: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+
+  /**
+   * The amount of time to delay between automatically cycling an item. If `null`, carousel will not automatically cycle.
+   */
+  interval: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().number),
+
+  /** Whether the carousel should react to keyboard events. */
+  keyboard: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * If set to `"hover"`, pauses the cycling of the carousel on `mouseenter` and resumes the cycling of the carousel on `mouseleave`. If set to `false`, hovering over the carousel won't pause it.
+   *
+   * On touch-enabled devices, when set to `"hover"`, cycling will pause on `touchend` (once the user finished interacting with the carousel) for two intervals, before automatically resuming. Note that this is in addition to the above mouse behavior.
+   */
+  pause: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOf(['hover', false]),
+
+  /** Whether the carousel should cycle continuously or have hard stops. */
+  wrap: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * Whether the carousel should support left/right swipe interactions on touchscreen devices.
+   */
+  touch: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /** Override the default button icon for the "previous" control */
+  prevIcon: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().node),
+
+  /**
+   * Label shown to screen readers only, can be used to show the previous element
+   * in the carousel.
+   * Set to null to deactivate.
+   */
+  prevLabel: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
+
+  /** Override the default button icon for the "next" control */
+  nextIcon: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().node),
+
+  /**
+   * Label shown to screen readers only, can be used to show the next element
+   * in the carousel.
+   * Set to null to deactivate.
+   */
+  nextLabel: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string)
+};
+var defaultProps = {
+  slide: true,
+  fade: false,
+  controls: true,
+  indicators: true,
+  defaultActiveIndex: 0,
+  interval: 5000,
+  keyboard: true,
+  pause: 'hover',
+  wrap: true,
+  touch: true,
+  prevIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("span", {
+    "aria-hidden": "true",
+    className: "carousel-control-prev-icon"
+  }),
+  prevLabel: 'Previous',
+  nextIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("span", {
+    "aria-hidden": "true",
+    className: "carousel-control-next-icon"
+  }),
+  nextLabel: 'Next'
+};
+
+function isVisible(element) {
+  if (!element || !element.style || !element.parentNode || !element.parentNode.style) {
+    return false;
+  }
+
+  var elementStyle = getComputedStyle(element);
+  return elementStyle.display !== 'none' && elementStyle.visibility !== 'hidden' && getComputedStyle(element.parentNode).display !== 'none';
+}
+
+function CarouselFunc(uncontrolledProps, ref) {
+  var _useUncontrolled = (0,uncontrollable__WEBPACK_IMPORTED_MODULE_9__.useUncontrolled)(uncontrolledProps, {
+    activeIndex: 'onSelect'
+  }),
+      _useUncontrolled$as = _useUncontrolled.as,
+      Component = _useUncontrolled$as === void 0 ? 'div' : _useUncontrolled$as,
+      bsPrefix = _useUncontrolled.bsPrefix,
+      slide = _useUncontrolled.slide,
+      fade = _useUncontrolled.fade,
+      controls = _useUncontrolled.controls,
+      indicators = _useUncontrolled.indicators,
+      activeIndex = _useUncontrolled.activeIndex,
+      onSelect = _useUncontrolled.onSelect,
+      onSlide = _useUncontrolled.onSlide,
+      onSlid = _useUncontrolled.onSlid,
+      interval = _useUncontrolled.interval,
+      keyboard = _useUncontrolled.keyboard,
+      onKeyDown = _useUncontrolled.onKeyDown,
+      pause = _useUncontrolled.pause,
+      onMouseOver = _useUncontrolled.onMouseOver,
+      onMouseOut = _useUncontrolled.onMouseOut,
+      wrap = _useUncontrolled.wrap,
+      touch = _useUncontrolled.touch,
+      onTouchStart = _useUncontrolled.onTouchStart,
+      onTouchMove = _useUncontrolled.onTouchMove,
+      onTouchEnd = _useUncontrolled.onTouchEnd,
+      prevIcon = _useUncontrolled.prevIcon,
+      prevLabel = _useUncontrolled.prevLabel,
+      nextIcon = _useUncontrolled.nextIcon,
+      nextLabel = _useUncontrolled.nextLabel,
+      className = _useUncontrolled.className,
+      children = _useUncontrolled.children,
+      props = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_useUncontrolled, ["as", "bsPrefix", "slide", "fade", "controls", "indicators", "activeIndex", "onSelect", "onSlide", "onSlid", "interval", "keyboard", "onKeyDown", "pause", "onMouseOver", "onMouseOut", "wrap", "touch", "onTouchStart", "onTouchMove", "onTouchEnd", "prevIcon", "prevLabel", "nextIcon", "nextLabel", "className", "children"]);
+
+  var prefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_10__.useBootstrapPrefix)(bsPrefix, 'carousel');
+  var nextDirectionRef = (0,react__WEBPACK_IMPORTED_MODULE_8__.useRef)(null);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)('next'),
+      direction = _useState[0],
+      setDirection = _useState[1];
+
+  var _useState2 = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false),
+      paused = _useState2[0],
+      setPaused = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false),
+      isSliding = _useState3[0],
+      setIsSliding = _useState3[1];
+
+  var _useState4 = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(activeIndex || 0),
+      renderedActiveIndex = _useState4[0],
+      setRenderedActiveIndex = _useState4[1];
+
+  if (!isSliding && activeIndex !== renderedActiveIndex) {
+    if (nextDirectionRef.current) {
+      setDirection(nextDirectionRef.current);
+    } else {
+      setDirection((activeIndex || 0) > renderedActiveIndex ? 'next' : 'prev');
+    }
+
+    if (slide) {
+      setIsSliding(true);
+    }
+
+    setRenderedActiveIndex(activeIndex || 0);
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_8__.useEffect)(function () {
+    if (nextDirectionRef.current) {
+      nextDirectionRef.current = null;
+    }
+  });
+  var numChildren = 0;
+  var activeChildInterval; // Iterate to grab all of the children's interval values
+  // (and count them, too)
+
+  (0,_ElementChildren__WEBPACK_IMPORTED_MODULE_11__.forEach)(children, function (child, index) {
+    ++numChildren;
+
+    if (index === activeIndex) {
+      activeChildInterval = child.props.interval;
+    }
+  });
+  var activeChildIntervalRef = (0,_restart_hooks_useCommittedRef__WEBPACK_IMPORTED_MODULE_4__.default)(activeChildInterval);
+  var prev = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    if (isSliding) {
+      return;
+    }
+
+    var nextActiveIndex = renderedActiveIndex - 1;
+
+    if (nextActiveIndex < 0) {
+      if (!wrap) {
+        return;
+      }
+
+      nextActiveIndex = numChildren - 1;
+    }
+
+    nextDirectionRef.current = 'prev';
+
+    if (onSelect) {
+      onSelect(nextActiveIndex, event);
+    }
+  }, [isSliding, renderedActiveIndex, onSelect, wrap, numChildren]); // This is used in the setInterval, so it should not invalidate.
+
+  var next = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_2__.default)(function (event) {
+    if (isSliding) {
+      return;
+    }
+
+    var nextActiveIndex = renderedActiveIndex + 1;
+
+    if (nextActiveIndex >= numChildren) {
+      if (!wrap) {
+        return;
+      }
+
+      nextActiveIndex = 0;
+    }
+
+    nextDirectionRef.current = 'next';
+
+    if (onSelect) {
+      onSelect(nextActiveIndex, event);
+    }
+  });
+  var elementRef = (0,react__WEBPACK_IMPORTED_MODULE_8__.useRef)();
+  (0,react__WEBPACK_IMPORTED_MODULE_8__.useImperativeHandle)(ref, function () {
+    return {
+      element: elementRef.current,
+      prev: prev,
+      next: next
+    };
+  }); // This is used in the setInterval, so it should not invalidate.
+
+  var nextWhenVisible = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_2__.default)(function () {
+    if (!document.hidden && isVisible(elementRef.current)) {
+      next();
+    }
+  });
+  var slideDirection = direction === 'next' ? 'left' : 'right';
+  (0,_restart_hooks_useUpdateEffect__WEBPACK_IMPORTED_MODULE_3__.default)(function () {
+    if (slide) {
+      // These callbacks will be handled by the <Transition> callbacks.
+      return;
+    }
+
+    if (onSlide) {
+      onSlide(renderedActiveIndex, slideDirection);
+    }
+
+    if (onSlid) {
+      onSlid(renderedActiveIndex, slideDirection);
+    }
+  }, [renderedActiveIndex]);
+  var orderClassName = prefix + "-item-" + direction;
+  var directionalClassName = prefix + "-item-" + slideDirection;
+  var handleEnter = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (node) {
+    (0,_triggerBrowserReflow__WEBPACK_IMPORTED_MODULE_12__.default)(node);
+
+    if (onSlide) {
+      onSlide(renderedActiveIndex, slideDirection);
+    }
+  }, [onSlide, renderedActiveIndex, slideDirection]);
+  var handleEntered = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function () {
+    setIsSliding(false);
+
+    if (onSlid) {
+      onSlid(renderedActiveIndex, slideDirection);
+    }
+  }, [onSlid, renderedActiveIndex, slideDirection]);
+  var handleKeyDown = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    if (keyboard && !/input|textarea/i.test(event.target.tagName)) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          prev(event);
+          return;
+
+        case 'ArrowRight':
+          event.preventDefault();
+          next(event);
+          return;
+
+        default:
+      }
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  }, [keyboard, onKeyDown, prev, next]);
+  var handleMouseOver = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    if (pause === 'hover') {
+      setPaused(true);
+    }
+
+    if (onMouseOver) {
+      onMouseOver(event);
+    }
+  }, [pause, onMouseOver]);
+  var handleMouseOut = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    setPaused(false);
+
+    if (onMouseOut) {
+      onMouseOut(event);
+    }
+  }, [onMouseOut]);
+  var touchStartXRef = (0,react__WEBPACK_IMPORTED_MODULE_8__.useRef)(0);
+  var touchDeltaXRef = (0,react__WEBPACK_IMPORTED_MODULE_8__.useRef)(0);
+  var touchUnpauseTimeout = (0,_restart_hooks_useTimeout__WEBPACK_IMPORTED_MODULE_5__.default)();
+  var handleTouchStart = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    touchStartXRef.current = event.touches[0].clientX;
+    touchDeltaXRef.current = 0;
+
+    if (pause === 'hover') {
+      setPaused(true);
+    }
+
+    if (onTouchStart) {
+      onTouchStart(event);
+    }
+  }, [pause, onTouchStart]);
+  var handleTouchMove = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    if (event.touches && event.touches.length > 1) {
+      touchDeltaXRef.current = 0;
+    } else {
+      touchDeltaXRef.current = event.touches[0].clientX - touchStartXRef.current;
+    }
+
+    if (onTouchMove) {
+      onTouchMove(event);
+    }
+  }, [onTouchMove]);
+  var handleTouchEnd = (0,react__WEBPACK_IMPORTED_MODULE_8__.useCallback)(function (event) {
+    if (touch) {
+      var touchDeltaX = touchDeltaXRef.current;
+
+      if (Math.abs(touchDeltaX) > SWIPE_THRESHOLD) {
+        if (touchDeltaX > 0) {
+          prev(event);
+        } else {
+          next(event);
+        }
+      }
+    }
+
+    if (pause === 'hover') {
+      touchUnpauseTimeout.set(function () {
+        setPaused(false);
+      }, interval || undefined);
+    }
+
+    if (onTouchEnd) {
+      onTouchEnd(event);
+    }
+  }, [touch, pause, prev, next, touchUnpauseTimeout, interval, onTouchEnd]);
+  var shouldPlay = interval != null && !paused && !isSliding;
+  var intervalHandleRef = (0,react__WEBPACK_IMPORTED_MODULE_8__.useRef)();
+  (0,react__WEBPACK_IMPORTED_MODULE_8__.useEffect)(function () {
+    var _ref, _activeChildIntervalR;
+
+    if (!shouldPlay) {
+      return undefined;
+    }
+
+    intervalHandleRef.current = window.setInterval(document.visibilityState ? nextWhenVisible : next, (_ref = (_activeChildIntervalR = activeChildIntervalRef.current) != null ? _activeChildIntervalR : interval) != null ? _ref : undefined);
+    return function () {
+      if (intervalHandleRef.current !== null) {
+        clearInterval(intervalHandleRef.current);
+      }
+    };
+  }, [shouldPlay, next, activeChildIntervalRef, interval, nextWhenVisible]);
+  var indicatorOnClicks = (0,react__WEBPACK_IMPORTED_MODULE_8__.useMemo)(function () {
+    return indicators && Array.from({
+      length: numChildren
+    }, function (_, index) {
+      return function (event) {
+        if (onSelect) {
+          onSelect(index, event);
+        }
+      };
+    });
+  }, [indicators, numChildren, onSelect]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement(Component, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    ref: elementRef
+  }, props, {
+    onKeyDown: handleKeyDown,
+    onMouseOver: handleMouseOver,
+    onMouseOut: handleMouseOut,
+    onTouchStart: handleTouchStart,
+    onTouchMove: handleTouchMove,
+    onTouchEnd: handleTouchEnd,
+    className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(className, prefix, slide && 'slide', fade && prefix + "-fade")
+  }), indicators && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("ol", {
+    className: prefix + "-indicators"
+  }, (0,_ElementChildren__WEBPACK_IMPORTED_MODULE_11__.map)(children, function (_child, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("li", {
+      key: index,
+      className: index === renderedActiveIndex ? 'active' : undefined,
+      onClick: indicatorOnClicks ? indicatorOnClicks[index] : undefined
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("div", {
+    className: prefix + "-inner"
+  }, (0,_ElementChildren__WEBPACK_IMPORTED_MODULE_11__.map)(children, function (child, index) {
+    var isActive = index === renderedActiveIndex;
+    return slide ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement(react_transition_group_Transition__WEBPACK_IMPORTED_MODULE_13__.default, {
+      in: isActive,
+      onEnter: isActive ? handleEnter : undefined,
+      onEntered: isActive ? handleEntered : undefined,
+      addEndListener: _transitionEndListener__WEBPACK_IMPORTED_MODULE_14__.default
+    }, function (status) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().cloneElement(child, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(child.props.className, isActive && status !== 'entered' && orderClassName, (status === 'entered' || status === 'exiting') && 'active', (status === 'entering' || status === 'exiting') && directionalClassName)
+      });
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().cloneElement(child, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(child.props.className, isActive && 'active')
+    });
+  })), controls && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement((react__WEBPACK_IMPORTED_MODULE_8___default().Fragment), null, (wrap || activeIndex !== 0) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement(_SafeAnchor__WEBPACK_IMPORTED_MODULE_15__.default, {
+    className: prefix + "-control-prev",
+    onClick: prev
+  }, prevIcon, prevLabel && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("span", {
+    className: "sr-only"
+  }, prevLabel)), (wrap || activeIndex !== numChildren - 1) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement(_SafeAnchor__WEBPACK_IMPORTED_MODULE_15__.default, {
+    className: prefix + "-control-next",
+    onClick: next
+  }, nextIcon, nextLabel && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().createElement("span", {
+    className: "sr-only"
+  }, nextLabel))));
+}
+
+var Carousel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default().forwardRef(CarouselFunc);
+Carousel.displayName = 'Carousel';
+Carousel.propTypes = propTypes;
+Carousel.defaultProps = defaultProps;
+Carousel.Caption = _CarouselCaption__WEBPACK_IMPORTED_MODULE_16__.default;
+Carousel.Item = _CarouselItem__WEBPACK_IMPORTED_MODULE_17__.default;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Carousel);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/CarouselCaption.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/CarouselCaption.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createWithBsPrefix */ "./node_modules/react-bootstrap/esm/createWithBsPrefix.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__.default)('carousel-caption'));
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/CarouselItem.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/CarouselItem.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+
+
+
+
+
+var CarouselItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().forwardRef(function (_ref, ref) {
+  var _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'div' : _ref$as,
+      bsPrefix = _ref.bsPrefix,
+      children = _ref.children,
+      className = _ref.className,
+      props = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["as", "bsPrefix", "children", "className"]);
+
+  var finalClassName = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_4__.useBootstrapPrefix)(bsPrefix, 'carousel-item'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(Component, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    ref: ref
+  }, props, {
+    className: finalClassName
+  }), children);
+});
+CarouselItem.displayName = 'CarouselItem';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CarouselItem);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/CloseButton.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/CloseButton.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+var propTypes = {
+  label: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string.isRequired),
+  onClick: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().func)
+};
+var defaultProps = {
+  label: 'Close'
+};
+var CloseButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().forwardRef(function (_ref, ref) {
+  var label = _ref.label,
+      onClick = _ref.onClick,
+      className = _ref.className,
+      props = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["label", "onClick", "className"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("button", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    ref: ref,
+    type: "button",
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('close', className),
+    onClick: onClick
+  }, props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("span", {
+    "aria-hidden": "true"
+  }, "\xD7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("span", {
+    className: "sr-only"
+  }, label));
+});
+CloseButton.displayName = 'CloseButton';
+CloseButton.propTypes = propTypes;
+CloseButton.defaultProps = defaultProps;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseButton);
 
 /***/ }),
 
@@ -17502,6 +21284,55 @@ DropdownToggle.displayName = 'DropdownToggle';
 
 /***/ }),
 
+/***/ "./node_modules/react-bootstrap/esm/ElementChildren.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ElementChildren.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "map": () => (/* binding */ map),
+/* harmony export */   "forEach": () => (/* binding */ forEach)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/**
+ * Iterates through children that are typically specified as `props.children`,
+ * but only maps over children that are "valid elements".
+ *
+ * The mapFunction provided index will be normalised to the components mapped,
+ * so an invalid component would not increase the index.
+ *
+ */
+
+function map(children, func) {
+  var index = 0;
+  return react__WEBPACK_IMPORTED_MODULE_0___default().Children.map(children, function (child) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().isValidElement(child) ? func(child, index++) : child;
+  });
+}
+/**
+ * Iterates through children that are "valid elements".
+ *
+ * The provided forEachFunc(child, index) will be called for each
+ * leaf child with the index reflecting the position relative to "valid components".
+ */
+
+
+function forEach(children, func) {
+  var index = 0;
+  react__WEBPACK_IMPORTED_MODULE_0___default().Children.forEach(children, function (child) {
+    if ( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().isValidElement(child)) func(child, index++);
+  });
+}
+
+
+
+/***/ }),
+
 /***/ "./node_modules/react-bootstrap/esm/Fade.js":
 /*!**************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/Fade.js ***!
@@ -17563,6 +21394,545 @@ var Fade = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().forwardRef(
 Fade.defaultProps = defaultProps;
 Fade.displayName = 'Fade';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Fade);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/Modal.js":
+/*!***************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/Modal.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var dom_helpers_addEventListener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers/addEventListener */ "./node_modules/dom-helpers/esm/addEventListener.js");
+/* harmony import */ var dom_helpers_canUseDOM__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! dom-helpers/canUseDOM */ "./node_modules/dom-helpers/esm/canUseDOM.js");
+/* harmony import */ var dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! dom-helpers/ownerDocument */ "./node_modules/dom-helpers/esm/ownerDocument.js");
+/* harmony import */ var dom_helpers_removeEventListener__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! dom-helpers/removeEventListener */ "./node_modules/dom-helpers/esm/removeEventListener.js");
+/* harmony import */ var dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! dom-helpers/scrollbarSize */ "./node_modules/dom-helpers/esm/scrollbarSize.js");
+/* harmony import */ var _restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @restart/hooks/useCallbackRef */ "./node_modules/@restart/hooks/esm/useCallbackRef.js");
+/* harmony import */ var _restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
+/* harmony import */ var _restart_hooks_useWillUnmount__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @restart/hooks/useWillUnmount */ "./node_modules/@restart/hooks/esm/useWillUnmount.js");
+/* harmony import */ var dom_helpers_transitionEnd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! dom-helpers/transitionEnd */ "./node_modules/dom-helpers/esm/transitionEnd.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react_overlays_Modal__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-overlays/Modal */ "./node_modules/react-overlays/esm/Modal.js");
+/* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
+/* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(warning__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _BootstrapModalManager__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./BootstrapModalManager */ "./node_modules/react-bootstrap/esm/BootstrapModalManager.js");
+/* harmony import */ var _Fade__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Fade */ "./node_modules/react-bootstrap/esm/Fade.js");
+/* harmony import */ var _ModalBody__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./ModalBody */ "./node_modules/react-bootstrap/esm/ModalBody.js");
+/* harmony import */ var _ModalContext__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./ModalContext */ "./node_modules/react-bootstrap/esm/ModalContext.js");
+/* harmony import */ var _ModalDialog__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ModalDialog */ "./node_modules/react-bootstrap/esm/ModalDialog.js");
+/* harmony import */ var _ModalFooter__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./ModalFooter */ "./node_modules/react-bootstrap/esm/ModalFooter.js");
+/* harmony import */ var _ModalHeader__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./ModalHeader */ "./node_modules/react-bootstrap/esm/ModalHeader.js");
+/* harmony import */ var _ModalTitle__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./ModalTitle */ "./node_modules/react-bootstrap/esm/ModalTitle.js");
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var manager;
+var defaultProps = {
+  show: false,
+  backdrop: true,
+  keyboard: true,
+  autoFocus: true,
+  enforceFocus: true,
+  restoreFocus: true,
+  animation: true,
+  dialogAs: _ModalDialog__WEBPACK_IMPORTED_MODULE_14__.default
+};
+/* eslint-disable no-use-before-define, react/no-multi-comp */
+
+function DialogTransition(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement(_Fade__WEBPACK_IMPORTED_MODULE_15__.default, props);
+}
+
+function BackdropTransition(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement(_Fade__WEBPACK_IMPORTED_MODULE_15__.default, props);
+}
+/* eslint-enable no-use-before-define */
+
+
+var Modal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      style = _ref.style,
+      dialogClassName = _ref.dialogClassName,
+      contentClassName = _ref.contentClassName,
+      children = _ref.children,
+      Dialog = _ref.dialogAs,
+      ariaLabelledby = _ref['aria-labelledby'],
+      show = _ref.show,
+      animation = _ref.animation,
+      backdrop = _ref.backdrop,
+      keyboard = _ref.keyboard,
+      onEscapeKeyDown = _ref.onEscapeKeyDown,
+      onShow = _ref.onShow,
+      onHide = _ref.onHide,
+      container = _ref.container,
+      autoFocus = _ref.autoFocus,
+      enforceFocus = _ref.enforceFocus,
+      restoreFocus = _ref.restoreFocus,
+      restoreFocusOptions = _ref.restoreFocusOptions,
+      onEntered = _ref.onEntered,
+      onExit = _ref.onExit,
+      onExiting = _ref.onExiting,
+      onEnter = _ref.onEnter,
+      onEntering = _ref.onEntering,
+      onExited = _ref.onExited,
+      backdropClassName = _ref.backdropClassName,
+      propsManager = _ref.manager,
+      props = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["bsPrefix", "className", "style", "dialogClassName", "contentClassName", "children", "dialogAs", "aria-labelledby", "show", "animation", "backdrop", "keyboard", "onEscapeKeyDown", "onShow", "onHide", "container", "autoFocus", "enforceFocus", "restoreFocus", "restoreFocusOptions", "onEntered", "onExit", "onExiting", "onEnter", "onEntering", "onExited", "backdropClassName", "manager"]);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)({}),
+      modalStyle = _useState[0],
+      setStyle = _useState[1];
+
+  var _useState2 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+      animateStaticModal = _useState2[0],
+      setAnimateStaticModal = _useState2[1];
+
+  var waitingForMouseUpRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(false);
+  var ignoreBackdropClickRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(false);
+  var removeStaticModalAnimationRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(null); // TODO: what's this type
+
+  var _useCallbackRef = (0,_restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_8__.default)(),
+      modal = _useCallbackRef[0],
+      setModalRef = _useCallbackRef[1];
+
+  var handleHide = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_9__.default)(onHide);
+  bsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_16__.useBootstrapPrefix)(bsPrefix, 'modal');
+  (0,react__WEBPACK_IMPORTED_MODULE_12__.useImperativeHandle)(ref, function () {
+    return {
+      get _modal() {
+         true ? warning__WEBPACK_IMPORTED_MODULE_13___default()(false, 'Accessing `_modal` is not supported and will be removed in a future release') : 0;
+        return modal;
+      }
+
+    };
+  }, [modal]);
+  var modalContext = (0,react__WEBPACK_IMPORTED_MODULE_12__.useMemo)(function () {
+    return {
+      onHide: handleHide
+    };
+  }, [handleHide]);
+
+  function getModalManager() {
+    if (propsManager) return propsManager;
+    if (!manager) manager = new _BootstrapModalManager__WEBPACK_IMPORTED_MODULE_17__.default();
+    return manager;
+  }
+
+  function updateDialogStyle(node) {
+    if (!dom_helpers_canUseDOM__WEBPACK_IMPORTED_MODULE_4__.default) return;
+    var containerIsOverflowing = getModalManager().isContainerOverflowing(modal);
+    var modalIsOverflowing = node.scrollHeight > (0,dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_5__.default)(node).documentElement.clientHeight;
+    setStyle({
+      paddingRight: containerIsOverflowing && !modalIsOverflowing ? (0,dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_7__.default)() : undefined,
+      paddingLeft: !containerIsOverflowing && modalIsOverflowing ? (0,dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_7__.default)() : undefined
+    });
+  }
+
+  var handleWindowResize = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_9__.default)(function () {
+    if (modal) {
+      updateDialogStyle(modal.dialog);
+    }
+  });
+  (0,_restart_hooks_useWillUnmount__WEBPACK_IMPORTED_MODULE_10__.default)(function () {
+    (0,dom_helpers_removeEventListener__WEBPACK_IMPORTED_MODULE_6__.default)(window, 'resize', handleWindowResize);
+
+    if (removeStaticModalAnimationRef.current) {
+      removeStaticModalAnimationRef.current();
+    }
+  }); // We prevent the modal from closing during a drag by detecting where the
+  // the click originates from. If it starts in the modal and then ends outside
+  // don't close.
+
+  var handleDialogMouseDown = function handleDialogMouseDown() {
+    waitingForMouseUpRef.current = true;
+  };
+
+  var handleMouseUp = function handleMouseUp(e) {
+    if (waitingForMouseUpRef.current && modal && e.target === modal.dialog) {
+      ignoreBackdropClickRef.current = true;
+    }
+
+    waitingForMouseUpRef.current = false;
+  };
+
+  var handleStaticModalAnimation = function handleStaticModalAnimation() {
+    setAnimateStaticModal(true);
+    removeStaticModalAnimationRef.current = (0,dom_helpers_transitionEnd__WEBPACK_IMPORTED_MODULE_11__.default)(modal.dialog, function () {
+      setAnimateStaticModal(false);
+    });
+  };
+
+  var handleStaticBackdropClick = function handleStaticBackdropClick(e) {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    handleStaticModalAnimation();
+  };
+
+  var handleClick = function handleClick(e) {
+    if (backdrop === 'static') {
+      handleStaticBackdropClick(e);
+      return;
+    }
+
+    if (ignoreBackdropClickRef.current || e.target !== e.currentTarget) {
+      ignoreBackdropClickRef.current = false;
+      return;
+    }
+
+    onHide();
+  };
+
+  var handleEscapeKeyDown = function handleEscapeKeyDown(e) {
+    if (!keyboard && backdrop === 'static') {
+      // Call preventDefault to stop modal from closing in react-overlays,
+      // then play our animation.
+      e.preventDefault();
+      handleStaticModalAnimation();
+    } else if (keyboard && onEscapeKeyDown) {
+      onEscapeKeyDown(e);
+    }
+  };
+
+  var handleEnter = function handleEnter(node) {
+    if (node) {
+      node.style.display = 'block';
+      updateDialogStyle(node);
+    }
+
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    if (onEnter) onEnter.apply(void 0, [node].concat(args));
+  };
+
+  var handleExit = function handleExit(node) {
+    if (removeStaticModalAnimationRef.current) {
+      removeStaticModalAnimationRef.current();
+    }
+
+    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
+
+    if (onExit) onExit.apply(void 0, [node].concat(args));
+  };
+
+  var handleEntering = function handleEntering(node) {
+    for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      args[_key3 - 1] = arguments[_key3];
+    }
+
+    if (onEntering) onEntering.apply(void 0, [node].concat(args)); // FIXME: This should work even when animation is disabled.
+
+    (0,dom_helpers_addEventListener__WEBPACK_IMPORTED_MODULE_3__.default)(window, 'resize', handleWindowResize);
+  };
+
+  var handleExited = function handleExited(node) {
+    if (node) node.style.display = ''; // RHL removes it sometimes
+
+    for (var _len4 = arguments.length, args = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+      args[_key4 - 1] = arguments[_key4];
+    }
+
+    if (onExited) onExited.apply(void 0, args); // FIXME: This should work even when animation is disabled.
+
+    (0,dom_helpers_removeEventListener__WEBPACK_IMPORTED_MODULE_6__.default)(window, 'resize', handleWindowResize);
+  };
+
+  var renderBackdrop = (0,react__WEBPACK_IMPORTED_MODULE_12__.useCallback)(function (backdropProps) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, backdropProps, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(bsPrefix + "-backdrop", backdropClassName, !animation && 'show')
+    }));
+  }, [animation, backdropClassName, bsPrefix]);
+
+  var baseModalStyle = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, style, modalStyle); // Sets `display` always block when `animation` is false
+
+
+  if (!animation) {
+    baseModalStyle.display = 'block';
+  }
+
+  var renderDialog = function renderDialog(dialogProps) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+      role: "dialog"
+    }, dialogProps, {
+      style: baseModalStyle,
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, bsPrefix, animateStaticModal && bsPrefix + "-static"),
+      onClick: backdrop ? handleClick : undefined,
+      onMouseUp: handleMouseUp,
+      "aria-labelledby": ariaLabelledby
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement(Dialog, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, props, {
+      onMouseDown: handleDialogMouseDown,
+      className: dialogClassName,
+      contentClassName: contentClassName
+    }), children));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement(_ModalContext__WEBPACK_IMPORTED_MODULE_18__.default.Provider, {
+    value: modalContext
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12___default().createElement(react_overlays_Modal__WEBPACK_IMPORTED_MODULE_19__.default, {
+    show: show,
+    ref: setModalRef,
+    backdrop: backdrop,
+    container: container,
+    keyboard: true // Always set true - see handleEscapeKeyDown
+    ,
+    autoFocus: autoFocus,
+    enforceFocus: enforceFocus,
+    restoreFocus: restoreFocus,
+    restoreFocusOptions: restoreFocusOptions,
+    onEscapeKeyDown: handleEscapeKeyDown,
+    onShow: onShow,
+    onHide: onHide,
+    onEnter: handleEnter,
+    onEntering: handleEntering,
+    onEntered: onEntered,
+    onExit: handleExit,
+    onExiting: onExiting,
+    onExited: handleExited,
+    manager: getModalManager(),
+    containerClassName: bsPrefix + "-open",
+    transition: animation ? DialogTransition : undefined,
+    backdropTransition: animation ? BackdropTransition : undefined,
+    renderBackdrop: renderBackdrop,
+    renderDialog: renderDialog
+  }));
+});
+Modal.displayName = 'Modal';
+Modal.defaultProps = defaultProps;
+Modal.Body = _ModalBody__WEBPACK_IMPORTED_MODULE_20__.default;
+Modal.Header = _ModalHeader__WEBPACK_IMPORTED_MODULE_21__.default;
+Modal.Title = _ModalTitle__WEBPACK_IMPORTED_MODULE_22__.default;
+Modal.Footer = _ModalFooter__WEBPACK_IMPORTED_MODULE_23__.default;
+Modal.Dialog = _ModalDialog__WEBPACK_IMPORTED_MODULE_14__.default;
+Modal.TRANSITION_DURATION = 300;
+Modal.BACKDROP_TRANSITION_DURATION = 150;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Modal);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ModalBody.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ModalBody.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createWithBsPrefix */ "./node_modules/react-bootstrap/esm/createWithBsPrefix.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__.default)('modal-body'));
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ModalContext.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ModalContext.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var ModalContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onHide: function onHide() {}
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalContext);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ModalDialog.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ModalDialog.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+
+
+
+
+
+var ModalDialog = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      contentClassName = _ref.contentClassName,
+      centered = _ref.centered,
+      size = _ref.size,
+      children = _ref.children,
+      scrollable = _ref.scrollable,
+      props = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["bsPrefix", "className", "contentClassName", "centered", "size", "children", "scrollable"]);
+
+  bsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_4__.useBootstrapPrefix)(bsPrefix, 'modal');
+  var dialogClass = bsPrefix + "-dialog";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, props, {
+    ref: ref,
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(dialogClass, className, size && bsPrefix + "-" + size, centered && dialogClass + "-centered", scrollable && dialogClass + "-scrollable")
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(bsPrefix + "-content", contentClassName)
+  }, children));
+});
+ModalDialog.displayName = 'ModalDialog';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalDialog);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ModalFooter.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ModalFooter.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createWithBsPrefix */ "./node_modules/react-bootstrap/esm/createWithBsPrefix.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__.default)('modal-footer'));
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ModalHeader.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ModalHeader.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
+/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
+/* harmony import */ var _CloseButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CloseButton */ "./node_modules/react-bootstrap/esm/CloseButton.js");
+/* harmony import */ var _ModalContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ModalContext */ "./node_modules/react-bootstrap/esm/ModalContext.js");
+
+
+
+
+
+
+
+
+var defaultProps = {
+  closeLabel: 'Close',
+  closeButton: false
+};
+var ModalHeader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().forwardRef(function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      closeLabel = _ref.closeLabel,
+      closeButton = _ref.closeButton,
+      onHide = _ref.onHide,
+      className = _ref.className,
+      children = _ref.children,
+      props = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["bsPrefix", "closeLabel", "closeButton", "onHide", "className", "children"]);
+
+  bsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_5__.useBootstrapPrefix)(bsPrefix, 'modal-header');
+  var context = (0,react__WEBPACK_IMPORTED_MODULE_3__.useContext)(_ModalContext__WEBPACK_IMPORTED_MODULE_6__.default);
+  var handleClick = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_4__.default)(function () {
+    if (context) context.onHide();
+    if (onHide) onHide();
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    ref: ref
+  }, props, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, bsPrefix)
+  }), children, closeButton && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(_CloseButton__WEBPACK_IMPORTED_MODULE_7__.default, {
+    label: closeLabel,
+    onClick: handleClick
+  }));
+});
+ModalHeader.displayName = 'ModalHeader';
+ModalHeader.defaultProps = defaultProps;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalHeader);
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/esm/ModalTitle.js":
+/*!********************************************************!*\
+  !*** ./node_modules/react-bootstrap/esm/ModalTitle.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _createWithBsPrefix__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createWithBsPrefix */ "./node_modules/react-bootstrap/esm/createWithBsPrefix.js");
+/* harmony import */ var _divWithClassName__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./divWithClassName */ "./node_modules/react-bootstrap/esm/divWithClassName.js");
+
+
+var DivStyledAsH4 = (0,_divWithClassName__WEBPACK_IMPORTED_MODULE_0__.default)('h4');
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_createWithBsPrefix__WEBPACK_IMPORTED_MODULE_1__.default)('modal-title', {
+  Component: DivStyledAsH4
+}));
 
 /***/ }),
 
@@ -46262,6 +50632,654 @@ DropdownToggle.propTypes = propTypes;
 
 /***/ }),
 
+/***/ "./node_modules/react-overlays/esm/Modal.js":
+/*!**************************************************!*\
+  !*** ./node_modules/react-overlays/esm/Modal.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var dom_helpers_activeElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dom-helpers/activeElement */ "./node_modules/dom-helpers/esm/activeElement.js");
+/* harmony import */ var dom_helpers_contains__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers/contains */ "./node_modules/dom-helpers/esm/contains.js");
+/* harmony import */ var dom_helpers_canUseDOM__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! dom-helpers/canUseDOM */ "./node_modules/dom-helpers/esm/canUseDOM.js");
+/* harmony import */ var dom_helpers_listen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! dom-helpers/listen */ "./node_modules/dom-helpers/esm/listen.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _restart_hooks_useMounted__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @restart/hooks/useMounted */ "./node_modules/@restart/hooks/esm/useMounted.js");
+/* harmony import */ var _restart_hooks_useWillUnmount__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @restart/hooks/useWillUnmount */ "./node_modules/@restart/hooks/esm/useWillUnmount.js");
+/* harmony import */ var _restart_hooks_usePrevious__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @restart/hooks/usePrevious */ "./node_modules/@restart/hooks/esm/usePrevious.js");
+/* harmony import */ var _restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
+/* harmony import */ var _ModalManager__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ModalManager */ "./node_modules/react-overlays/esm/ModalManager.js");
+/* harmony import */ var _useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./useWaitForDOMRef */ "./node_modules/react-overlays/esm/useWaitForDOMRef.js");
+
+
+
+/* eslint-disable @typescript-eslint/no-use-before-define, react/prop-types */
+
+
+
+
+
+
+
+
+
+
+
+
+
+var manager;
+
+function getManager() {
+  if (!manager) manager = new _ModalManager__WEBPACK_IMPORTED_MODULE_13__.default();
+  return manager;
+}
+
+function useModalManager(provided) {
+  var modalManager = provided || getManager();
+  var modal = (0,react__WEBPACK_IMPORTED_MODULE_7__.useRef)({
+    dialog: null,
+    backdrop: null
+  });
+  return Object.assign(modal.current, {
+    add: function add(container, className) {
+      return modalManager.add(modal.current, container, className);
+    },
+    remove: function remove() {
+      return modalManager.remove(modal.current);
+    },
+    isTopModal: function isTopModal() {
+      return modalManager.isTopModal(modal.current);
+    },
+    setDialogRef: (0,react__WEBPACK_IMPORTED_MODULE_7__.useCallback)(function (ref) {
+      modal.current.dialog = ref;
+    }, []),
+    setBackdropRef: (0,react__WEBPACK_IMPORTED_MODULE_7__.useCallback)(function (ref) {
+      modal.current.backdrop = ref;
+    }, [])
+  });
+}
+
+var Modal = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_7__.forwardRef)(function (_ref, ref) {
+  var _ref$show = _ref.show,
+      show = _ref$show === void 0 ? false : _ref$show,
+      _ref$role = _ref.role,
+      role = _ref$role === void 0 ? 'dialog' : _ref$role,
+      className = _ref.className,
+      style = _ref.style,
+      children = _ref.children,
+      _ref$backdrop = _ref.backdrop,
+      backdrop = _ref$backdrop === void 0 ? true : _ref$backdrop,
+      _ref$keyboard = _ref.keyboard,
+      keyboard = _ref$keyboard === void 0 ? true : _ref$keyboard,
+      onBackdropClick = _ref.onBackdropClick,
+      onEscapeKeyDown = _ref.onEscapeKeyDown,
+      transition = _ref.transition,
+      backdropTransition = _ref.backdropTransition,
+      _ref$autoFocus = _ref.autoFocus,
+      autoFocus = _ref$autoFocus === void 0 ? true : _ref$autoFocus,
+      _ref$enforceFocus = _ref.enforceFocus,
+      enforceFocus = _ref$enforceFocus === void 0 ? true : _ref$enforceFocus,
+      _ref$restoreFocus = _ref.restoreFocus,
+      restoreFocus = _ref$restoreFocus === void 0 ? true : _ref$restoreFocus,
+      restoreFocusOptions = _ref.restoreFocusOptions,
+      renderDialog = _ref.renderDialog,
+      _ref$renderBackdrop = _ref.renderBackdrop,
+      renderBackdrop = _ref$renderBackdrop === void 0 ? function (props) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().createElement("div", props);
+  } : _ref$renderBackdrop,
+      providedManager = _ref.manager,
+      containerRef = _ref.container,
+      containerClassName = _ref.containerClassName,
+      onShow = _ref.onShow,
+      _ref$onHide = _ref.onHide,
+      onHide = _ref$onHide === void 0 ? function () {} : _ref$onHide,
+      onExit = _ref.onExit,
+      onExited = _ref.onExited,
+      onExiting = _ref.onExiting,
+      onEnter = _ref.onEnter,
+      onEntering = _ref.onEntering,
+      onEntered = _ref.onEntered,
+      rest = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_ref, ["show", "role", "className", "style", "children", "backdrop", "keyboard", "onBackdropClick", "onEscapeKeyDown", "transition", "backdropTransition", "autoFocus", "enforceFocus", "restoreFocus", "restoreFocusOptions", "renderDialog", "renderBackdrop", "manager", "container", "containerClassName", "onShow", "onHide", "onExit", "onExited", "onExiting", "onEnter", "onEntering", "onEntered"]);
+
+  var container = (0,_useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_14__.default)(containerRef);
+  var modal = useModalManager(providedManager);
+  var isMounted = (0,_restart_hooks_useMounted__WEBPACK_IMPORTED_MODULE_9__.default)();
+  var prevShow = (0,_restart_hooks_usePrevious__WEBPACK_IMPORTED_MODULE_11__.default)(show);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_7__.useState)(!show),
+      exited = _useState[0],
+      setExited = _useState[1];
+
+  var lastFocusRef = (0,react__WEBPACK_IMPORTED_MODULE_7__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_7__.useImperativeHandle)(ref, function () {
+    return modal;
+  }, [modal]);
+
+  if (dom_helpers_canUseDOM__WEBPACK_IMPORTED_MODULE_4__.default && !prevShow && show) {
+    lastFocusRef.current = (0,dom_helpers_activeElement__WEBPACK_IMPORTED_MODULE_2__.default)();
+  }
+
+  if (!transition && !show && !exited) {
+    setExited(true);
+  } else if (show && exited) {
+    setExited(false);
+  }
+
+  var handleShow = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_12__.default)(function () {
+    modal.add(container, containerClassName);
+    removeKeydownListenerRef.current = (0,dom_helpers_listen__WEBPACK_IMPORTED_MODULE_5__.default)(document, 'keydown', handleDocumentKeyDown);
+    removeFocusListenerRef.current = (0,dom_helpers_listen__WEBPACK_IMPORTED_MODULE_5__.default)(document, 'focus', // the timeout is necessary b/c this will run before the new modal is mounted
+    // and so steals focus from it
+    function () {
+      return setTimeout(handleEnforceFocus);
+    }, true);
+
+    if (onShow) {
+      onShow();
+    } // autofocus after onShow to not trigger a focus event for previous
+    // modals before this one is shown.
+
+
+    if (autoFocus) {
+      var currentActiveElement = (0,dom_helpers_activeElement__WEBPACK_IMPORTED_MODULE_2__.default)(document);
+
+      if (modal.dialog && currentActiveElement && !(0,dom_helpers_contains__WEBPACK_IMPORTED_MODULE_3__.default)(modal.dialog, currentActiveElement)) {
+        lastFocusRef.current = currentActiveElement;
+        modal.dialog.focus();
+      }
+    }
+  });
+  var handleHide = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_12__.default)(function () {
+    modal.remove();
+    removeKeydownListenerRef.current == null ? void 0 : removeKeydownListenerRef.current();
+    removeFocusListenerRef.current == null ? void 0 : removeFocusListenerRef.current();
+
+    if (restoreFocus) {
+      var _lastFocusRef$current;
+
+      // Support: <=IE11 doesn't support `focus()` on svg elements (RB: #917)
+      (_lastFocusRef$current = lastFocusRef.current) == null ? void 0 : _lastFocusRef$current.focus == null ? void 0 : _lastFocusRef$current.focus(restoreFocusOptions);
+      lastFocusRef.current = null;
+    }
+  }); // TODO: try and combine these effects: https://github.com/react-bootstrap/react-overlays/pull/794#discussion_r409954120
+  // Show logic when:
+  //  - show is `true` _and_ `container` has resolved
+
+  (0,react__WEBPACK_IMPORTED_MODULE_7__.useEffect)(function () {
+    if (!show || !container) return;
+    handleShow();
+  }, [show, container,
+  /* should never change: */
+  handleShow]); // Hide cleanup logic when:
+  //  - `exited` switches to true
+  //  - component unmounts;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_7__.useEffect)(function () {
+    if (!exited) return;
+    handleHide();
+  }, [exited, handleHide]);
+  (0,_restart_hooks_useWillUnmount__WEBPACK_IMPORTED_MODULE_10__.default)(function () {
+    handleHide();
+  }); // --------------------------------
+
+  var handleEnforceFocus = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_12__.default)(function () {
+    if (!enforceFocus || !isMounted() || !modal.isTopModal()) {
+      return;
+    }
+
+    var currentActiveElement = (0,dom_helpers_activeElement__WEBPACK_IMPORTED_MODULE_2__.default)();
+
+    if (modal.dialog && currentActiveElement && !(0,dom_helpers_contains__WEBPACK_IMPORTED_MODULE_3__.default)(modal.dialog, currentActiveElement)) {
+      modal.dialog.focus();
+    }
+  });
+  var handleBackdropClick = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_12__.default)(function (e) {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    onBackdropClick == null ? void 0 : onBackdropClick(e);
+
+    if (backdrop === true) {
+      onHide();
+    }
+  });
+  var handleDocumentKeyDown = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_12__.default)(function (e) {
+    if (keyboard && e.keyCode === 27 && modal.isTopModal()) {
+      onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
+
+      if (!e.defaultPrevented) {
+        onHide();
+      }
+    }
+  });
+  var removeFocusListenerRef = (0,react__WEBPACK_IMPORTED_MODULE_7__.useRef)();
+  var removeKeydownListenerRef = (0,react__WEBPACK_IMPORTED_MODULE_7__.useRef)();
+
+  var handleHidden = function handleHidden() {
+    setExited(true);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    onExited == null ? void 0 : onExited.apply(void 0, args);
+  };
+
+  var Transition = transition;
+
+  if (!container || !(show || Transition && !exited)) {
+    return null;
+  }
+
+  var dialogProps = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    role: role,
+    ref: modal.setDialogRef,
+    // apparently only works on the dialog role element
+    'aria-modal': role === 'dialog' ? true : undefined
+  }, rest, {
+    style: style,
+    className: className,
+    tabIndex: -1
+  });
+
+  var dialog = renderDialog ? renderDialog(dialogProps) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().createElement("div", dialogProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().cloneElement(children, {
+    role: 'document'
+  }));
+
+  if (Transition) {
+    dialog = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().createElement(Transition, {
+      appear: true,
+      unmountOnExit: true,
+      "in": !!show,
+      onExit: onExit,
+      onExiting: onExiting,
+      onExited: handleHidden,
+      onEnter: onEnter,
+      onEntering: onEntering,
+      onEntered: onEntered
+    }, dialog);
+  }
+
+  var backdropElement = null;
+
+  if (backdrop) {
+    var BackdropTransition = backdropTransition;
+    backdropElement = renderBackdrop({
+      ref: modal.setBackdropRef,
+      onClick: handleBackdropClick
+    });
+
+    if (BackdropTransition) {
+      backdropElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().createElement(BackdropTransition, {
+        appear: true,
+        "in": !!show
+      }, backdropElement);
+    }
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().createElement((react__WEBPACK_IMPORTED_MODULE_7___default().Fragment), null, /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_8__.createPortal( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default().createElement((react__WEBPACK_IMPORTED_MODULE_7___default().Fragment), null, backdropElement, dialog), container));
+});
+var propTypes = {
+  /**
+   * Set the visibility of the Modal
+   */
+  show: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
+
+  /**
+   * A DOM element, a `ref` to an element, or function that returns either. The Modal is appended to it's `container` element.
+   *
+   * For the sake of assistive technologies, the container should usually be the document body, so that the rest of the
+   * page content can be placed behind a virtual backdrop as well as a visual one.
+   */
+  container: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().any),
+
+  /**
+   * A callback fired when the Modal is opening.
+   */
+  onShow: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * A callback fired when either the backdrop is clicked, or the escape key is pressed.
+   *
+   * The `onHide` callback only signals intent from the Modal,
+   * you must actually set the `show` prop to `false` for the Modal to close.
+   */
+  onHide: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * Include a backdrop component.
+   */
+  backdrop: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool), prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOf(['static'])]),
+
+  /**
+   * A function that returns the dialog component. Useful for custom
+   * rendering. **Note:** the component should make sure to apply the provided ref.
+   *
+   * ```js static
+   * renderDialog={props => <MyDialog {...props} />}
+   * ```
+   */
+  renderDialog: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * A function that returns a backdrop component. Useful for custom
+   * backdrop rendering.
+   *
+   * ```js
+   *  renderBackdrop={props => <MyBackdrop {...props} />}
+   * ```
+   */
+  renderBackdrop: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * A callback fired when the escape key, if specified in `keyboard`, is pressed.
+   *
+   * If preventDefault() is called on the keyboard event, closing the modal will be cancelled.
+   */
+  onEscapeKeyDown: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * A callback fired when the backdrop, if specified, is clicked.
+   */
+  onBackdropClick: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * A css class or set of classes applied to the modal container when the modal is open,
+   * and removed when it is closed.
+   */
+  containerClassName: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
+
+  /**
+   * Close the modal when escape key is pressed
+   */
+  keyboard: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
+
+  /**
+   * A `react-transition-group@2.0.0` `<Transition/>` component used
+   * to control animations for the dialog component.
+   */
+  transition: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().elementType),
+
+  /**
+   * A `react-transition-group@2.0.0` `<Transition/>` component used
+   * to control animations for the backdrop components.
+   */
+  backdropTransition: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().elementType),
+
+  /**
+   * When `true` The modal will automatically shift focus to itself when it opens, and
+   * replace it to the last focused element when it closes. This also
+   * works correctly with any Modal children that have the `autoFocus` prop.
+   *
+   * Generally this should never be set to `false` as it makes the Modal less
+   * accessible to assistive technologies, like screen readers.
+   */
+  autoFocus: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
+
+  /**
+   * When `true` The modal will prevent focus from leaving the Modal while open.
+   *
+   * Generally this should never be set to `false` as it makes the Modal less
+   * accessible to assistive technologies, like screen readers.
+   */
+  enforceFocus: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
+
+  /**
+   * When `true` The modal will restore focus to previously focused element once
+   * modal is hidden
+   */
+  restoreFocus: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
+
+  /**
+   * Options passed to focus function when `restoreFocus` is set to `true`
+   *
+   * @link  https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#Parameters
+   */
+  restoreFocusOptions: prop_types__WEBPACK_IMPORTED_MODULE_6___default().shape({
+    preventScroll: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool)
+  }),
+
+  /**
+   * Callback fired before the Modal transitions in
+   */
+  onEnter: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * Callback fired as the Modal begins to transition in
+   */
+  onEntering: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * Callback fired after the Modal finishes transitioning in
+   */
+  onEntered: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * Callback fired right before the Modal transitions out
+   */
+  onExit: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * Callback fired as the Modal begins to transition out
+   */
+  onExiting: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * Callback fired after the Modal finishes transitioning out
+   */
+  onExited: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
+
+  /**
+   * A ModalManager instance used to track and manage the state of open
+   * Modals. Useful when customizing how modals interact within a container
+   */
+  manager: prop_types__WEBPACK_IMPORTED_MODULE_6___default().instanceOf(_ModalManager__WEBPACK_IMPORTED_MODULE_13__.default)
+};
+Modal.displayName = 'Modal';
+Modal.propTypes = propTypes;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.assign(Modal, {
+  Manager: _ModalManager__WEBPACK_IMPORTED_MODULE_13__.default
+}));
+
+/***/ }),
+
+/***/ "./node_modules/react-overlays/esm/ModalManager.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-overlays/esm/ModalManager.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var dom_helpers_addClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dom-helpers/addClass */ "./node_modules/dom-helpers/esm/addClass.js");
+/* harmony import */ var dom_helpers_removeClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dom-helpers/removeClass */ "./node_modules/dom-helpers/esm/removeClass.js");
+/* harmony import */ var dom_helpers_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dom-helpers/css */ "./node_modules/dom-helpers/esm/css.js");
+/* harmony import */ var dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dom-helpers/scrollbarSize */ "./node_modules/dom-helpers/esm/scrollbarSize.js");
+/* harmony import */ var _isOverflowing__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./isOverflowing */ "./node_modules/react-overlays/esm/isOverflowing.js");
+/* harmony import */ var _manageAriaHidden__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./manageAriaHidden */ "./node_modules/react-overlays/esm/manageAriaHidden.js");
+
+
+
+
+
+
+
+function findIndexOf(arr, cb) {
+  var idx = -1;
+  arr.some(function (d, i) {
+    if (cb(d, i)) {
+      idx = i;
+      return true;
+    }
+
+    return false;
+  });
+  return idx;
+}
+
+/**
+ * Proper state management for containers and the modals in those containers.
+ *
+ * @internal Used by the Modal to ensure proper styling of containers.
+ */
+var ModalManager = /*#__PURE__*/function () {
+  function ModalManager(_temp) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        _ref$hideSiblingNodes = _ref.hideSiblingNodes,
+        hideSiblingNodes = _ref$hideSiblingNodes === void 0 ? true : _ref$hideSiblingNodes,
+        _ref$handleContainerO = _ref.handleContainerOverflow,
+        handleContainerOverflow = _ref$handleContainerO === void 0 ? true : _ref$handleContainerO;
+
+    this.hideSiblingNodes = void 0;
+    this.handleContainerOverflow = void 0;
+    this.modals = void 0;
+    this.containers = void 0;
+    this.data = void 0;
+    this.scrollbarSize = void 0;
+    this.hideSiblingNodes = hideSiblingNodes;
+    this.handleContainerOverflow = handleContainerOverflow;
+    this.modals = [];
+    this.containers = [];
+    this.data = [];
+    this.scrollbarSize = (0,dom_helpers_scrollbarSize__WEBPACK_IMPORTED_MODULE_3__.default)();
+  }
+
+  var _proto = ModalManager.prototype;
+
+  _proto.isContainerOverflowing = function isContainerOverflowing(modal) {
+    var data = this.data[this.containerIndexFromModal(modal)];
+    return data && data.overflowing;
+  };
+
+  _proto.containerIndexFromModal = function containerIndexFromModal(modal) {
+    return findIndexOf(this.data, function (d) {
+      return d.modals.indexOf(modal) !== -1;
+    });
+  };
+
+  _proto.setContainerStyle = function setContainerStyle(containerState, container) {
+    var style = {
+      overflow: 'hidden'
+    }; // we are only interested in the actual `style` here
+    // because we will override it
+
+    containerState.style = {
+      overflow: container.style.overflow,
+      paddingRight: container.style.paddingRight
+    };
+
+    if (containerState.overflowing) {
+      // use computed style, here to get the real padding
+      // to add our scrollbar width
+      style.paddingRight = parseInt((0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_2__.default)(container, 'paddingRight') || '0', 10) + this.scrollbarSize + "px";
+    }
+
+    (0,dom_helpers_css__WEBPACK_IMPORTED_MODULE_2__.default)(container, style);
+  };
+
+  _proto.removeContainerStyle = function removeContainerStyle(containerState, container) {
+    Object.assign(container.style, containerState.style);
+  };
+
+  _proto.add = function add(modal, container, className) {
+    var modalIdx = this.modals.indexOf(modal);
+    var containerIdx = this.containers.indexOf(container);
+
+    if (modalIdx !== -1) {
+      return modalIdx;
+    }
+
+    modalIdx = this.modals.length;
+    this.modals.push(modal);
+
+    if (this.hideSiblingNodes) {
+      (0,_manageAriaHidden__WEBPACK_IMPORTED_MODULE_4__.hideSiblings)(container, modal);
+    }
+
+    if (containerIdx !== -1) {
+      this.data[containerIdx].modals.push(modal);
+      return modalIdx;
+    }
+
+    var data = {
+      modals: [modal],
+      // right now only the first modal of a container will have its classes applied
+      classes: className ? className.split(/\s+/) : [],
+      overflowing: (0,_isOverflowing__WEBPACK_IMPORTED_MODULE_5__.default)(container)
+    };
+
+    if (this.handleContainerOverflow) {
+      this.setContainerStyle(data, container);
+    }
+
+    data.classes.forEach(dom_helpers_addClass__WEBPACK_IMPORTED_MODULE_0__.default.bind(null, container));
+    this.containers.push(container);
+    this.data.push(data);
+    return modalIdx;
+  };
+
+  _proto.remove = function remove(modal) {
+    var modalIdx = this.modals.indexOf(modal);
+
+    if (modalIdx === -1) {
+      return;
+    }
+
+    var containerIdx = this.containerIndexFromModal(modal);
+    var data = this.data[containerIdx];
+    var container = this.containers[containerIdx];
+    data.modals.splice(data.modals.indexOf(modal), 1);
+    this.modals.splice(modalIdx, 1); // if that was the last modal in a container,
+    // clean up the container
+
+    if (data.modals.length === 0) {
+      data.classes.forEach(dom_helpers_removeClass__WEBPACK_IMPORTED_MODULE_1__.default.bind(null, container));
+
+      if (this.handleContainerOverflow) {
+        this.removeContainerStyle(data, container);
+      }
+
+      if (this.hideSiblingNodes) {
+        (0,_manageAriaHidden__WEBPACK_IMPORTED_MODULE_4__.showSiblings)(container, modal);
+      }
+
+      this.containers.splice(containerIdx, 1);
+      this.data.splice(containerIdx, 1);
+    } else if (this.hideSiblingNodes) {
+      // otherwise make sure the next top modal is visible to a SR
+      var _data$modals = data.modals[data.modals.length - 1],
+          backdrop = _data$modals.backdrop,
+          dialog = _data$modals.dialog;
+      (0,_manageAriaHidden__WEBPACK_IMPORTED_MODULE_4__.ariaHidden)(false, dialog);
+      (0,_manageAriaHidden__WEBPACK_IMPORTED_MODULE_4__.ariaHidden)(false, backdrop);
+    }
+  };
+
+  _proto.isTopModal = function isTopModal(modal) {
+    return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
+  };
+
+  return ModalManager;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalManager);
+
+/***/ }),
+
 /***/ "./node_modules/react-overlays/esm/Overlay.js":
 /*!****************************************************!*\
   !*** ./node_modules/react-overlays/esm/Overlay.js ***!
@@ -46539,6 +51557,94 @@ Overlay.propTypes = {
   onExited: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().func)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overlay);
+
+/***/ }),
+
+/***/ "./node_modules/react-overlays/esm/isOverflowing.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-overlays/esm/isOverflowing.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isOverflowing)
+/* harmony export */ });
+/* harmony import */ var dom_helpers_isWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dom-helpers/isWindow */ "./node_modules/dom-helpers/esm/isWindow.js");
+/* harmony import */ var dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dom-helpers/ownerDocument */ "./node_modules/dom-helpers/esm/ownerDocument.js");
+
+
+
+function isBody(node) {
+  return node && node.tagName.toLowerCase() === 'body';
+}
+
+function bodyIsOverflowing(node) {
+  var doc = (0,dom_helpers_isWindow__WEBPACK_IMPORTED_MODULE_0__.default)(node) ? (0,dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_1__.default)() : (0,dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_1__.default)(node);
+  var win = (0,dom_helpers_isWindow__WEBPACK_IMPORTED_MODULE_0__.default)(node) || doc.defaultView;
+  return doc.body.clientWidth < win.innerWidth;
+}
+
+function isOverflowing(container) {
+  var win = (0,dom_helpers_isWindow__WEBPACK_IMPORTED_MODULE_0__.default)(container);
+  return win || isBody(container) ? bodyIsOverflowing(container) : container.scrollHeight > container.clientHeight;
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-overlays/esm/manageAriaHidden.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-overlays/esm/manageAriaHidden.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ariaHidden": () => (/* binding */ ariaHidden),
+/* harmony export */   "hideSiblings": () => (/* binding */ hideSiblings),
+/* harmony export */   "showSiblings": () => (/* binding */ showSiblings)
+/* harmony export */ });
+var BLACKLIST = ['template', 'script', 'style'];
+
+var isHidable = function isHidable(_ref) {
+  var nodeType = _ref.nodeType,
+      tagName = _ref.tagName;
+  return nodeType === 1 && BLACKLIST.indexOf(tagName.toLowerCase()) === -1;
+};
+
+var siblings = function siblings(container, exclude, cb) {
+  [].forEach.call(container.children, function (node) {
+    if (exclude.indexOf(node) === -1 && isHidable(node)) {
+      cb(node);
+    }
+  });
+};
+
+function ariaHidden(hide, node) {
+  if (!node) return;
+
+  if (hide) {
+    node.setAttribute('aria-hidden', 'true');
+  } else {
+    node.removeAttribute('aria-hidden');
+  }
+}
+function hideSiblings(container, _ref2) {
+  var dialog = _ref2.dialog,
+      backdrop = _ref2.backdrop;
+  siblings(container, [dialog, backdrop], function (node) {
+    return ariaHidden(true, node);
+  });
+}
+function showSiblings(container, _ref3) {
+  var dialog = _ref3.dialog,
+      backdrop = _ref3.backdrop;
+  siblings(container, [dialog, backdrop], function (node) {
+    return ariaHidden(false, node);
+  });
+}
 
 /***/ }),
 
@@ -48942,6 +54048,27 @@ Handshake.default = Handshake;
 
 /***/ }),
 
+/***/ "./src/images/svg/search.svg":
+/*!***********************************!*\
+  !*** ./src/images/svg/search.svg ***!
+  \***********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var React = __webpack_require__(/*! react */ "react");
+
+function Search (props) {
+    return React.createElement("svg",props,[React.createElement("defs",{"key":0},React.createElement("style",null,".cls-1{fill:#96ff10;}")),React.createElement("g",{"id":"Layer_8","data-name":"Layer 2","key":1},React.createElement("g",{"id":"Layer_1-2","data-name":"Layer 1"},React.createElement("path",{"className":"cls-1","d":"M167.38,142.08,118,92.68A62.8,62.8,0,1,0,92.68,118l49.4,49.41a17.89,17.89,0,1,0,25.3-25.3Zm-137.9-46a47.09,47.09,0,1,1,66.6,0A47.08,47.08,0,0,1,29.48,96.08Z"})))]);
+}
+
+Search.defaultProps = {"viewBox":"0 0 500 174"};
+
+module.exports = Search;
+
+Search.default = Search;
+
+
+/***/ }),
+
 /***/ "./src/images/svg/thumbsdown.svg":
 /*!***************************************!*\
   !*** ./src/images/svg/thumbsdown.svg ***!
@@ -49340,6 +54467,141 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/images/dontforget2.png":
+/*!************************************!*\
+  !*** ./src/images/dontforget2.png ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/dontforget2-56cdf658c871d555c5c5e27d63b85fb9.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote1.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote1.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote1-4091b325d6008aadb6decf3860954b4b.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote2.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote2.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote2-919be618141d144275220c4e0a93f56e.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote3.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote3.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote3-383690b2cfa101fad820790fbf06b15c.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote4.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote4.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote4-1dd1b6ed97974402de35f2953b61205a.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote5.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote5.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote5-c2d740ed9805b259a4df9888f45962f9.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote6.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote6.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote6-1fee0dabc171f698a1164b605f35d76a.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote7.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote7.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote7-47dffd50f4acb8c56414dc528ccc4828.png");
+
+/***/ }),
+
+/***/ "./src/images/inspquote8.png":
+/*!***********************************!*\
+  !*** ./src/images/inspquote8.png ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/inspquote8-c2b5205c5ace8a8e8438234a0bce651a.png");
+
+/***/ }),
+
 /***/ "./src/images/logo.png":
 /*!*****************************!*\
   !*** ./src/images/logo.png ***!
@@ -49592,6 +54854,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/person9-b72057fc95a565907eab6ca8eb4da780.jpg");
+
+/***/ }),
+
+/***/ "./src/images/piechart.jpg":
+/*!*********************************!*\
+  !*** ./src/images/piechart.jpg ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/piechart-0e1b38e7e3faaa6a918217cb427edf1a.jpg");
 
 /***/ }),
 

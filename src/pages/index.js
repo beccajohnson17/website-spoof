@@ -1,10 +1,10 @@
 import * as React from "react"
-import { useState, useRef, useEffect } from 'react';
-import { Card, Tooltip, OverlayTrigger, Navbar, Nav, NavDropdown, Container, Row, Col} from 'react-bootstrap';
+import { Card, Tooltip, OverlayTrigger, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@fontsource/geo" // Defaults to weight 400.
 
-import ProfPic from "../images/sophia.jpg";
+import LinkedOutNavbar from '../components/linkedoutnav';
+
 import Person1 from "../images/person1.jpg";
 import Person2 from "../images/person2.jpg";
 import Person3 from "../images/person3.jpg";
@@ -22,142 +22,32 @@ import Person20 from "../images/person20.jpg";
 import Person21 from "../images/person21.jpg";
 import Person24 from "../images/person24.jpg";
 import Acme from "../images/acme.jpg";
+import Pie from "../images/piechart.jpg";
 
 import Dislike from "../images/svg/thumbsdown.svg";
 import Handshake from "../images/svg/handshake.svg";
 import Comment from "../images/svg/comment.svg";
 
-import Layout from "../components/layout"
-import LinkedLogo from '../images/logo.png';
-import resume from '../../public/static/resumespoof.pdf';
 
 // styles
 const pageStyles = {
   fontFamily: "Geo, sans-serif",
 }
 
-const SearchbarDropdown = (props) => {
-  const { options, onInputChange } = props;
-  const ulRef = useRef();
-  const inputRef = useRef();
-  useEffect(() => {
-    inputRef.current.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ulRef.current.style.display = 'flex';
-      onInputChange(event);
-    });
-    document.addEventListener('click', (event) => {
-      ulRef.current.style.display = 'none';
-    });
-  }, []);
-
-  return (
-    <div className="search-bar-dropdown">
-      <input
-        id="search-bar"
-        type="text"
-        className="form-control"
-        placeholder="Search"
-        ref={inputRef}
-        onChange={onInputChange}
-      />
-      <ul id="results" className="list-group" ref={ulRef}>
-        {options.map((option, index) => {
-          return (
-            <button
-              type="button"
-              key={index}
-              onClick={(e) => {
-                inputRef.current.value = option;
-              }}
-              className="list-group-item list-group-item-action"
-            >
-              {option}
-            </button>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
-
-const defaultOptions = [
-  ' Highpaying jobs in the area',
-  'Jobs somewhat outside the area',
-  'Jobs in my skill set',
-  'Entry level jobs',
-  'Internship',
-  'Unpaid internship',
-  'Volunteer position',
-  'What the ffffffffffffffff',
-  'Top side hustles',
-  'Ways to spend my time',
-  'Alternatives to being homeless'
-
-];
-
 const IndexPage = () => {
-  const [options, setOptions] = useState([]);
-  const onInputChange = (event) => {
-    setOptions(
-      defaultOptions.filter((option) => option.includes(event.target.value))
-    );
-  };
-
 
   return (
-    <main style={pageStyles}>
-      <title>Linked Out</title>
-
+    <div style={pageStyles}>
+      <title>LinkedOut</title>
       <div>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Layout>
-                <NavDropdown title={
-
-                  <div className="pull-left">
-
-                    <img className="thumbnail-image rounded-circle"
-
-                      src={ProfPic}
-                      alt="user pic"
-                    />
-                    <br></br>
-                  Me
-
-                </div>
-                }
-                  id="basic-nav-dropdown">
-
-                  <NavDropdown.Item href="#action/3.1">Skills</NavDropdown.Item>
-                  <NavDropdown.Item href={resume} target="_blank">Resume</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Help</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-                </NavDropdown>
-              </Layout>
-            </Nav>
-            <div className="App container mt-2 mb-3">
-              <SearchbarDropdown options={options} onInputChange={onInputChange} />
-              <br />
-            </div>
-          </Navbar.Collapse>
-          <Navbar.Brand href="#home">LinkedOut <span><img className="logo-linked"
-
-            src={LinkedLogo}
-            alt="user pic"
-          /></span></Navbar.Brand>
-        </Navbar>
+        <LinkedOutNavbar />
       </div>
-
 
       <Container>
         <Row>
           <Col xs="6">
-            <div className="stickyPost sticky-top">
-              <Card className="sideContent" style={{ width: '30rem' }}>
+            <div className="sideContent">
+              <Card style={{ minWidth: '30rem' }}>
                 <Card.Body>
                   <Card.Title className="card-title">News</Card.Title>
                   <ul className="body-content">
@@ -186,7 +76,6 @@ const IndexPage = () => {
            <p className="news-subtext text-muted"> 3 hrs ago: 2,114 readers </p>
                     </li>
 
-
                     <br></br>
                     <li>Beat the back-to-work blues
            <p className="news-subtext text-muted"> 8 hrs ago: 9,999 readers </p>
@@ -195,7 +84,7 @@ const IndexPage = () => {
                 </Card.Body>
               </Card>
               <br></br>
-              <Card className="sideContent" style={{ width: '30rem' }}>
+              <Card style={{ minWidth: '30rem' }}>
                 <Card.Body>
                   <Card.Title className="card-title">Connections</Card.Title>
                   <OverlayTrigger
@@ -347,30 +236,47 @@ const IndexPage = () => {
                   </OverlayTrigger>
                 </Card.Body>
               </Card>
-              <br></br>
-              <Card className="sideContent" style={{ width: '30rem' }}>
+            </div>
+            <div className="stickyPost sticky-top">
+              <Card style={{ minWidth: '30rem' }}>
                 <Card.Body>
                   <Card.Title className="card-title">Trending hashtags</Card.Title>
                   <div className="hashtag-content">
-                    #thenewoffice
-              <br></br>
-              #postcovidcalculations
-              <br></br>
-              #happiness
-              <br></br>
-              #selfcare
-              <br></br>
-              #selfcareforproductivity
-              <br></br>
-              #bravenewworld
-            </div>
+                    <a href="https://www.linkedin.com/feed/hashtag/humblebrag/" target="_blank">
+                      #humblebrag
+                    </a>
+                    <br></br>
+                    <a href="https://www.linkedin.com/feed/hashtag/thegrind/" target="_blank">
+                      #thegrind
+                    </a>
+                    <br></br>
+                    <a href="https://www.linkedin.com/feed/hashtag/happiness/" target="_blank">
+                      #happiness
+                    </a>
+                    <br></br>
+                    <a href="https://www.linkedin.com/feed/hashtag/selfcare/" target="_blank">
+                      #selfcare
+                    </a>
+                    <br></br>
+                    <a href="https://www.linkedin.com/feed/hashtag/selfcareforproductivity/" target="_blank">
+                      #selfcareforproductivity
+                    </a>
+                    <br></br>
+                    <a href="https://www.linkedin.com/feed/hashtag/bravenewworld/" target="_blank">
+                      #bravenewworld
+                    </a>
+                    <br></br>
+                    <a href="https://www.linkedin.com/feed/hashtag/lightattheendofthetunnel/" target="_blank">
+                      #lightattheendofthetunnel
+                    </a>
+                  </div>
                 </Card.Body>
               </Card>
             </div>
           </Col>
           <Col xs="6">
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
@@ -387,15 +293,42 @@ const IndexPage = () => {
             </Card.Text>
 
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
@@ -414,15 +347,42 @@ const IndexPage = () => {
                   cover letter, and 5 references. Minimum 10 years experience required. Job description TBD!
             </Card.Text>
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
@@ -439,15 +399,42 @@ const IndexPage = () => {
                     Charlie Bowman to the team for at least a year, or about as long as we can get him to work here.
             </Card.Text>
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
@@ -466,15 +453,42 @@ const IndexPage = () => {
                     to relax for the next few months…
             </Card.Text>
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
@@ -491,15 +505,42 @@ const IndexPage = () => {
                     enough. Love and light!!!
             </Card.Text>
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
@@ -519,22 +560,49 @@ const IndexPage = () => {
                     haha. At least I have as many days as I “want” to be sick.
             </Card.Text>
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-              <Card className="sideContent" style={{ width: '49rem' }}>
+              <Card style={{ minWidth: '49rem' }}>
                 <Card.Body>
                   <span className="header-wrapper">
                     <img className="connections rounded-circle"
-                      src={Acme}
+                      src={Pie}
                       alt="company pic"
                     />
-                    <Card.Title className="card-title">ACME
+                    <Card.Title className="card-title">WORKPLACE SEMINARS
                   </Card.Title> </span>
                   <Card.Text className="post-content">
                     Is your productivity down? A deadly global pandemic can be a bummer,
@@ -546,43 +614,96 @@ const IndexPage = () => {
                     Be grateful for the stab at life that your job gives you! Subscribe today.
             </Card.Text>
                   <div className="icons-flex">
-                    <Dislike />
-                    <Handshake />
-                    <Comment />
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
+                      <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
+                      <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
+                      <Comment />
+                    </OverlayTrigger>
                   </div>
                 </Card.Body>
               </Card>
             </div>
             <div className="post-body">
-                <Card className="sideContent" style={{ width: '49rem' }}>
-                  <Card.Body>
-                    <span className="header-wrapper">
-                      <img className="connections rounded-circle"
-                        src={Person21}
-                        alt="prof pic"
-                      />
-                      <Card.Title className="card-title">Tamara Baumgartner
+              <Card style={{ minWidth: '49rem' }}>
+                <Card.Body>
+                  <span className="header-wrapper">
+                    <img className="connections rounded-circle"
+                      src={Person21}
+                      alt="prof pic"
+                    />
+                    <Card.Title className="card-title">Tamara Baumgartner
                   </Card.Title> </span>
-                    <Card.Text className="post-content">
-                      So excited to announce my acceptance into the graduate program at University of Nebraska!
-                      I’ll be graduating whenever the economy recovers, as long as the government keeps giving me loans.
-                      Who wants to graduate in this job market, am I right? Time to surround myself with extremely high
-                      levels of personal stress so that I don’t have to focus on any future stress. This way, I can attend
-                      classes, teach them, research, and lose hair. Best of both worlds. Excited to be a Husker!
+                  <Card.Text className="post-content">
+                    So excited to announce my acceptance into the graduate program at University of Nebraska!
+                    I’ll be graduating whenever the economy recovers, as long as the government keeps giving me loans.
+                    Who wants to graduate in this job market, am I right? Time to surround myself with extremely high
+                    levels of personal stress so that I don’t have to focus on any future stress. This way, I can attend
+                    classes, teach them, research, and lose hair. Best of both worlds. Excited to be a Husker!
             </Card.Text>
-                    <div className="icons-flex">
+                  <div className="icons-flex">
+                    <OverlayTrigger
+                      key="dislike"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='dislike'>
+                          Expressing discontentment? No. Not allowed.
+              </Tooltip>
+                      }>
                       <Dislike />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="handshake"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='handshake'>
+                          NO UNIONIZING
+              </Tooltip>
+                      }>
                       <Handshake />
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      key="comment"
+                      placement={'bottom'}
+                      overlay={
+                        <Tooltip id='comment'>
+                          Trust me, we're helping you out here by not letting you do this.
+              </Tooltip>
+                      }>
                       <Comment />
-                    </div>
-                  </Card.Body>
-                </Card>
-              </div>
+                    </OverlayTrigger>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
           </Col>
         </Row>
       </Container>
-    </main>
-
+    </div>
   )
 }
 
