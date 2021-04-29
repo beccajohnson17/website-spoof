@@ -1,4 +1,4 @@
-import React from 'React';
+import * as React from "react"
 import { Carousel } from 'react-bootstrap';
 import Quote1 from '../images/inspquote1.png';
 import Quote2 from '../images/inspquote2.png';

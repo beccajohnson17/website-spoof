@@ -1,4 +1,4 @@
-import React from 'React';
+import * as React from "react"
 import { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';

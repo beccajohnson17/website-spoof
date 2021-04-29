@@ -1,4 +1,4 @@
-import React from 'React';
+import * as React from "react"
 import { Card } from 'react-bootstrap';
 import LinkedOutNavbar from '../components/linkedoutnav';
 import ModalOpen from '../components/modal';

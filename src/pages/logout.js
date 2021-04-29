@@ -1,4 +1,4 @@
-import React from 'React';
+import * as React from "react"
 import HereForever from '../images/dontforget2.png';
 
     export default function Logout() {
